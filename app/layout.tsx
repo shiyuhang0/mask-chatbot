@@ -10,6 +10,7 @@ import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://acme.com'),
   title: {
     default: 'Next.js AI Chatbot',
     template: `%s - Next.js AI Chatbot`
@@ -23,6 +24,9 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png'
+  },
+  openGraph: {
+    images: '/og-image.png'
   }
 }
 
