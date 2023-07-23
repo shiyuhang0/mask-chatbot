@@ -27,16 +27,14 @@ const exampleMessages = [
   }
 ]
 
-type Props = {
-  prompts: Prompt[]
-};
-
 type Prompt = {
   act: string
   prompt: string
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<{
+  prompts: Prompt[]
+}> = async () => {
   const prompts = [
     {
       act: 'Explain technical concepts',
