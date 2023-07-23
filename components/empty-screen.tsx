@@ -1,11 +1,6 @@
 import { UseChatHelpers } from 'ai/react'
 
-import { Button } from '@/components/ui/button'
-import { ExternalLink } from '@/components/external-link'
-import { IconArrowRight } from '@/components/ui/icons'
-
 import * as React from 'react'
-import {SelectPrompt} from "@/components/prompt-select";
 import {
   Select,
   SelectContent,
@@ -15,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import {GetServerSideProps} from "next";
 
 const exampleMessages = [
   {
@@ -31,7 +27,37 @@ const exampleMessages = [
   }
 ]
 
+type Props = {
+  prompts: Prompt[]
+};
+
+type Prompt = {
+  act: string
+  prompt: string
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const prompts = [
+    {
+      act: 'Explain technical concepts',
+      prompt: `What is a "serverless function"?`
+    },
+    {
+      act: 'Summarize an article',
+      prompt: 'Summarize the following article for a 2nd grader: \n'
+    },
+    {
+      act: 'Draft an email',
+      prompt: `Draft an email to my boss about the following: \n`
+    }
+  ]
+  return {
+    props: { prompts: JSON.parse(JSON.stringify(prompts)) }
+  }
+}
+
 export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
+  const prompts = props.prompts
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
@@ -65,9 +91,9 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Act as</SelectLabel>
-                {exampleMessages.map((item, index) => (
-                    <SelectItem key={index} value={item.message}>
-                        {item.heading}
+                {prompts.map((item, index) => (
+                    <SelectItem key={index} value={item.prompt}>
+                        {item.act}
                     </SelectItem>
                 ))}
               </SelectGroup>
