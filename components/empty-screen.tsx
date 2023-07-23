@@ -56,8 +56,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
-  const prompts = props.prompts
+export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>,{prompts}) {
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">

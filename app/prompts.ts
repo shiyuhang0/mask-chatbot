@@ -52,6 +52,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
+// export default function GetPrompts({repo,}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+//   return repo.stargazers_count
+// }
+
 
 // export default function Page({
 //                                repo,
