@@ -6,6 +6,15 @@ import { IconArrowRight } from '@/components/ui/icons'
 
 import * as React from 'react'
 import {SelectPrompt} from "@/components/prompt-select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 const exampleMessages = [
   {
@@ -54,10 +63,33 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
           ))}
         </div>
         <div>
-          <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
-            {/* @ts-ignore */}
-            <SelectPrompt/>
-          </React.Suspense>
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Act as"/>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Act as</SelectLabel>
+                {exampleMessages.map((item, index) => (
+                    <SelectItem key={index} value={item.heading}>
+                      <Button
+                          key={index}
+                          variant="link"
+                          className="h-auto p-0 text-base"
+                          onClick={() => setInput(item.message)}
+                      >
+                        <IconArrowRight className="mr-2 text-muted-foreground" />
+                        {item.heading}
+                      </Button>
+                    </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          {/*<React.Suspense fallback={<div className="flex-1 overflow-auto" />}>*/}
+          {/*  /!* @ts-ignore *!/*/}
+          {/*  <SelectPrompt />*/}
+          {/*</React.Suspense>*/}
         </div>
       </div>
     </div>

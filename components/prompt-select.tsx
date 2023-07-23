@@ -12,10 +12,10 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export async function SelectPrompt({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
+export async function SelectPrompt() {
   const prompt = await GetPrompts()
   return (
-      <Select onValueChange={(value)=>setInput(value)}>
+      <Select>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Act as"/>
         </SelectTrigger>
