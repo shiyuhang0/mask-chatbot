@@ -1,5 +1,6 @@
 import * as React from "react"
 import {GetPrompts} from "@/app/prompts";
+import { UseChatHelpers } from 'ai/react'
 
 import {
   Select,
