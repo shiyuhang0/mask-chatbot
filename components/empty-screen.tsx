@@ -11,6 +11,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import {GetServerSideProps} from "next";
+import {Prompt} from "next/dist/compiled/@next/font/dist/google";
 
 const exampleMessages = [
   {
@@ -32,9 +33,7 @@ type Prompt = {
   prompt: string
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  prompts: Prompt[]
-}> = async () => {
+export async function getServerSideProps(){
   const prompts = [
     {
       act: 'Explain technical concepts',
@@ -49,8 +48,9 @@ export const getServerSideProps: GetServerSideProps<{
       prompt: `Draft an email to my boss about the following: \n`
     }
   ]
+  const p: Prompt[] = JSON.parse(JSON.stringify(prompts))
   return {
-    props: { prompts: JSON.parse(JSON.stringify(prompts)) }
+    props: { prompts: p }
   }
 }
 
