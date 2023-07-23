@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const prompt = GetPrompts()
+const prompt = await GetPrompts()
 
 export function SelectPrompt() {
   return (
