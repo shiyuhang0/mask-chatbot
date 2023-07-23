@@ -5,6 +5,8 @@ import { ExternalLink } from '@/components/external-link'
 import { IconArrowRight } from '@/components/ui/icons'
 
 import {SelectPrompt} from '@/components/prompt-select';
+import {SidebarList} from "@/components/sidebar-list";
+import * as React from "react/index";
 
 const exampleMessages = [
   {
@@ -53,7 +55,10 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
           ))}
         </div>
         <div>
-          <SelectPrompt />
+          <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
+            {/* @ts-ignore */}
+            <SelectPrompt />
+          </React.Suspense>
         </div>
       </div>
     </div>
