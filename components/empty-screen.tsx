@@ -71,7 +71,7 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
               <SelectGroup>
                 <SelectLabel>Act as</SelectLabel>
                 {exampleMessages.map((item, index) => (
-                    <SelectItem key={index} value={item.heading}>
+                    <SelectItem key={index} value={item.message}>
                         {item.heading}
                     </SelectItem>
                 ))}
