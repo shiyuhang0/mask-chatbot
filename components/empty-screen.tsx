@@ -54,7 +54,7 @@ export async function getServerSideProps(){
 }
 
 export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>,{ pro }: string) {
-  const prompts: Prompt[] = JSON.parse(JSON.stringify(p))
+  const prompts: Prompt[] = JSON.parse(pro)
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
