@@ -1,4 +1,5 @@
 import * as React from "react"
+import {GetPrompts} from "@/app/prompts";
 
 import {
   Select,
@@ -10,6 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+const prompt = GetPrompts()
+
 export function SelectPrompt() {
   return (
       <Select>
@@ -18,12 +21,12 @@ export function SelectPrompt() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {/*<SelectLabel>Fruits</SelectLabel>*/}
-            <SelectItem value="apple">Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
-            <SelectItem value="blueberry">Blueberry</SelectItem>
-            <SelectItem value="grapes">Grapes</SelectItem>
-            <SelectItem value="pineapple">Pineapple</SelectItem>
+            <SelectLabel>Act as</SelectLabel>
+            {prompt.map((item, index) => (
+              <SelectItem key={index} value={item}>
+                {item}
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>

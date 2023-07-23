@@ -52,9 +52,9 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
             </Button>
           ))}
         </div>
-      </div>
-      <div>
-        <SelectPrompt />
+        <div>
+          <SelectPrompt />
+        </div>
       </div>
     </div>
   )
