@@ -1,15 +1,7 @@
 import { UseChatHelpers } from 'ai/react'
 
 import * as React from 'react'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
+import {SelectPrompt} from "@/components/prompt-select";
 
 const exampleMessages = [
   {
@@ -25,33 +17,9 @@ const exampleMessages = [
     message: `Draft an email to my boss about the following: \n`
   }
 ]
-async function GetPrompts() {
-  const prompts = [
-    {
-      act: 'Explain technical concepts',
-      prompt: `What is a "serverless function"?`
-    },
-    {
-      act: 'Summarize an article',
-      prompt: 'Summarize the following article for a 2nd grader: \n'
-    },
-    {
-      act: 'Draft an email',
-      prompt: `Draft an email to my boss about the following: \n`
-    }
-  ]
-  return prompts
-}
-
-//
-// type MyPrompt = {
-//   act: string
-//   prompt: string
-// }
 
 
-export async function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
-  const prompts = await GetPrompts()
+export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
@@ -78,25 +46,25 @@ export async function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>
         {/*  ))}*/}
         {/*</div>*/}
         <div className="mt-4 flex flex-col items-start space-y-2">
-          <Select onValueChange={(value)=>setInput(value)}>
-            <SelectTrigger className="w-[300px]">
-              <SelectValue placeholder="Act as"/>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Act as</SelectLabel>
-                {prompts.map((item, index) => (
-                    <SelectItem key={index} value={item.prompt}>
-                        {item.act}
-                    </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {/*<React.Suspense fallback={<div className="flex-1 overflow-auto" />}>*/}
-          {/*  /!* @ts-ignore *!/*/}
-          {/*  <SelectPrompt />*/}
-          {/*</React.Suspense>*/}
+          {/*<Select onValueChange={(value)=>setInput(value)}>*/}
+          {/*  <SelectTrigger className="w-[300px]">*/}
+          {/*    <SelectValue placeholder="Act as"/>*/}
+          {/*  </SelectTrigger>*/}
+          {/*  <SelectContent>*/}
+          {/*    <SelectGroup>*/}
+          {/*      <SelectLabel>Act as</SelectLabel>*/}
+          {/*      {prompts.map((item, index) => (*/}
+          {/*          <SelectItem key={index} value={item.prompt}>*/}
+          {/*              {item.act}*/}
+          {/*          </SelectItem>*/}
+          {/*      ))}*/}
+          {/*    </SelectGroup>*/}
+          {/*  </SelectContent>*/}
+          {/*</Select>*/}
+          <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
+            {/* @ts-ignore */}
+            <SelectPrompt setInput={setInput}/>
+          </React.Suspense>
         </div>
       </div>
     </div>
