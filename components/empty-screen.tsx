@@ -25,20 +25,24 @@ const exampleMessages = [
     message: `Draft an email to my boss about the following: \n`
   }
 ]
-const prompts = [
-  {
-    act: 'Explain technical concepts',
-    prompt: `What is a "serverless function"?`
-  },
-  {
-    act: 'Summarize an article',
-    prompt: 'Summarize the following article for a 2nd grader: \n'
-  },
-  {
-    act: 'Draft an email',
-    prompt: `Draft an email to my boss about the following: \n`
-  }
-]
+async function GetPrompts() {
+  const prompts = [
+    {
+      act: 'Explain technical concepts',
+      prompt: `What is a "serverless function"?`
+    },
+    {
+      act: 'Summarize an article',
+      prompt: 'Summarize the following article for a 2nd grader: \n'
+    },
+    {
+      act: 'Draft an email',
+      prompt: `Draft an email to my boss about the following: \n`
+    }
+  ]
+  return prompts
+}
+
 //
 // type MyPrompt = {
 //   act: string
@@ -46,7 +50,8 @@ const prompts = [
 // }
 
 
-export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
+export async function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
+  const prompts = await GetPrompts()
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">

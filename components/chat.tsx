@@ -20,6 +20,8 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { toast } from 'react-hot-toast'
+import {SidebarList} from "@/components/sidebar-list";
+import * as React from "react/index";
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
@@ -51,6 +53,8 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
   return (
     <>
       <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
+        <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
+          {/* @ts-ignore */}
         {messages.length ? (
           <>
             <ChatList messages={messages} />
@@ -59,6 +63,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         ) : (
           <EmptyScreen setInput={setInput} />
         )}
+        </React.Suspense>
       </div>
       <ChatPanel
         id={id}
