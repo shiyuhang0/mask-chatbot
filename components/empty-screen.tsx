@@ -5,8 +5,7 @@ import { ExternalLink } from '@/components/external-link'
 import { IconArrowRight } from '@/components/ui/icons'
 
 import {SelectPrompt} from '@/components/prompt-select';
-import {SidebarList} from "@/components/sidebar-list";
-import * as React from "react/index";
+import * as React from 'react'
 
 const exampleMessages = [
   {
