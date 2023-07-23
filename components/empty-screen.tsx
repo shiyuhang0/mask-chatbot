@@ -11,7 +11,6 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import {GetServerSideProps} from "next";
-import {Prompt} from "next/dist/compiled/@next/font/dist/google";
 
 const exampleMessages = [
   {
@@ -28,7 +27,7 @@ const exampleMessages = [
   }
 ]
 
-type Prompt = {
+type MyPrompt = {
   act: string
   prompt: string
 }
@@ -53,8 +52,8 @@ export async function getServerSideProps(){
   }
 }
 
-export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>,{ pro }: string) {
-  const prompts: Prompt[] = JSON.parse(pro)
+export function EmptyScreen({ pro }: string) {
+  const prompts: MyPrompt[] = JSON.parse(pro)
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
