@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import {GetServerSideProps} from "next";
 
 const exampleMessages = [
   {
@@ -26,34 +25,28 @@ const exampleMessages = [
     message: `Draft an email to my boss about the following: \n`
   }
 ]
-
-type MyPrompt = {
-  act: string
-  prompt: string
-}
-
-export async function getServerSideProps(){
-  const p = [
-    {
-      act: 'Explain technical concepts',
-      prompt: `What is a "serverless function"?`
-    },
-    {
-      act: 'Summarize an article',
-      prompt: 'Summarize the following article for a 2nd grader: \n'
-    },
-    {
-      act: 'Draft an email',
-      prompt: `Draft an email to my boss about the following: \n`
-    }
-  ]
-  return {
-    props: { pro: JSON.stringify(p)}
+const prompts = [
+  {
+    act: 'Explain technical concepts',
+    prompt: `What is a "serverless function"?`
+  },
+  {
+    act: 'Summarize an article',
+    prompt: 'Summarize the following article for a 2nd grader: \n'
+  },
+  {
+    act: 'Draft an email',
+    prompt: `Draft an email to my boss about the following: \n`
   }
-}
+]
+//
+// type MyPrompt = {
+//   act: string
+//   prompt: string
+// }
 
-export function EmptyScreen({ pro }: string) {
-  const prompts: MyPrompt[] = JSON.parse(pro)
+
+export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">

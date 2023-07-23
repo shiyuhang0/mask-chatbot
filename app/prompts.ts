@@ -32,39 +32,8 @@ type Prompt = {
 //
 // }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const prompts = [
-    {
-      act: 'Explain technical concepts',
-      prompt: `What is a "serverless function"?`
-    },
-    {
-      act: 'Summarize an article',
-      prompt: 'Summarize the following article for a 2nd grader: \n'
-    },
-    {
-      act: 'Draft an email',
-      prompt: `Draft an email to my boss about the following: \n`
-    }
-  ]
-  return {
-    props: { prompts: JSON.parse(JSON.stringify(prompts)) }
-  }
-}
-
-// export default function GetPrompts({repo,}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-//   return repo.stargazers_count
-// }
-
-
-// export default function Page({
-//                                repo,
-//                              }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-//   return repo.stargazers_count
-// }
-//
-// export async function GetPrompts() {
-//   const exampleMessages = [
+// export const getServerSideProps: GetServerSideProps = async () => {
+//     const prompts = [
 //     {
 //       act: 'Explain technical concepts',
 //       prompt: `What is a "serverless function"?`
@@ -78,5 +47,33 @@ export const getServerSideProps: GetServerSideProps = async () => {
 //       prompt: `Draft an email to my boss about the following: \n`
 //     }
 //   ]
-//   return exampleMessages
+//   return {
+//     props: { prompts: JSON.parse(JSON.stringify(prompts)) }
+//   }
 // }
+//
+// export async function getServerSideProps(){
+//   const p = [
+//     {
+//       act: 'Explain technical concepts',
+//       prompt: `What is a "serverless function"?`
+//     },
+//     {
+//       act: 'Summarize an article',
+//       prompt: 'Summarize the following article for a 2nd grader: \n'
+//     },
+//     {
+//       act: 'Draft an email',
+//       prompt: `Draft an email to my boss about the following: \n`
+//     }
+//   ]
+//   return {
+//     props: { pro: JSON.stringify(p)}
+//   }
+// }
+//
+// function GetPrompts({ pro }) {
+//   return pro
+// }
+//
+// export default GetPrompts
