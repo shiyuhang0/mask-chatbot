@@ -20,8 +20,7 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { toast } from 'react-hot-toast'
-import {SidebarList} from "@/components/sidebar-list";
-import * as React from "react/index";
+import * as React from "react";
 
 const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
