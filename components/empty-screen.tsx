@@ -56,7 +56,7 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
         <div>
           <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
             {/* @ts-ignore */}
-            <SelectPrompt setInput={setInput}/>
+            <SelectPrompt/>
           </React.Suspense>
         </div>
       </div>

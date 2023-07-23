@@ -14,9 +14,8 @@ import {
 
 export async function SelectPrompt({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
   const prompt = await GetPrompts()
-  const [value, setValue] = React.useState('');
   return (
-      <Select value={value} onValueChange={(value)=>setInput(value)}>
+      <Select onValueChange={(value)=>setInput(value)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Act as"/>
         </SelectTrigger>
