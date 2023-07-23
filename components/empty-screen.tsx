@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button'
 import { ExternalLink } from '@/components/external-link'
 import { IconArrowRight } from '@/components/ui/icons'
 
+import {SelectPrompt} from '@/components/prompt-select';
+
 const exampleMessages = [
   {
     heading: 'Explain technical concepts',
@@ -50,6 +52,9 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
             </Button>
           ))}
         </div>
+      </div>
+      <div>
+        <SelectPrompt />
       </div>
     </div>
   )
