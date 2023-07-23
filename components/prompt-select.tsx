@@ -11,9 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const prompt = await GetPrompts()
-
 export function SelectPrompt() {
+  const prompt = await GetPrompts()
   return (
       <Select>
         <SelectTrigger className="w-[180px]">
