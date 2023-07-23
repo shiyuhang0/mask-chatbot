@@ -1,9 +1,28 @@
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+// import { PrismaClient } from '@prisma/client'
+// import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+// const prisma = new PrismaClient()
+
+// type Prompt = {
+//   id: number
+//   act: string
+//   prompt: string
+// }
+//
+// export const getServerSideProps: GetServerSideProps<{
+//   prompt: Prompt
+// }> = async () => {
+//
+//   const allPrompts = await prisma.prompts.findMany()
+//
+// }
+//
+// export default function Page({
+//                                repo,
+//                              }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+//   return repo.stargazers_count
+// }
 
 export async function GetPrompts() {
-  const allPrompts = await prisma.prompts.findMany()
-  console.log(allPrompts)
   const exampleMessages = [
     {
       act: 'Explain technical concepts',
