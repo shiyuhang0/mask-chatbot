@@ -48,13 +48,13 @@ export async function getServerSideProps(){
       prompt: `Draft an email to my boss about the following: \n`
     }
   ]
-  const prompts: Prompt[] = JSON.parse(JSON.stringify(p))
   return {
-    props: { prompts }
+    props: { pro: JSON.stringify(p)}
   }
 }
 
-export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>,{ prompts }:Prompt[]) {
+export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>,{ pro }: string) {
+  const prompts: Prompt[] = JSON.parse(JSON.stringify(p))
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
