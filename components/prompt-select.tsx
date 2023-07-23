@@ -23,8 +23,8 @@ export function SelectPrompt() {
           <SelectGroup>
             <SelectLabel>Act as</SelectLabel>
             {prompt.map((item, index) => (
-              <SelectItem key={index} value={item}>
-                {item}
+              <SelectItem key={index} value={item.act}>
+                {item.act}
               </SelectItem>
             ))}
           </SelectGroup>
