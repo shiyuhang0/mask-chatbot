@@ -50,13 +50,16 @@ async function GetPrompts() {
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
-  const data = await res.json()
-  const prompts: Rows = JSON.parse(data)
-  return prompts.rows
+  return res.json()
 }
 
 export async function SelectPrompt({setInput}: Pick<UseChatHelpers, 'setInput'>) {
-  const prompts: Prompts[] = await GetPrompts()
+  const data = await GetPrompts()
+  console.log(data)
+  const rows: Rows = JSON.parse(data)
+  console.log(rows)
+  const prompts: Prompts[] = rows.rows
+  console.log(prompts)
   return (
       <Select onValueChange={(value) => setInput(value)}>
         <SelectTrigger className="w-[300px]">
