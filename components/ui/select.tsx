@@ -10,6 +10,12 @@ import {
   IconChevronUpDown
 } from '@/components/ui/icons'
 
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@radix-ui/react-icons';
+
 const Select = SelectPrimitive.Root
 
 const SelectGroup = SelectPrimitive.Group
@@ -51,6 +57,9 @@ const SelectContent = React.forwardRef<
       position={position}
       {...props}
     >
+      <SelectPrimitive.ScrollUpButton>
+        <ChevronUpIcon />
+      </SelectPrimitive.ScrollUpButton>
       <SelectPrimitive.Viewport
         className={cn(
           'p-1',
@@ -60,6 +69,9 @@ const SelectContent = React.forwardRef<
       >
         {children}
       </SelectPrimitive.Viewport>
+      <SelectPrimitive.ScrollDownButton>
+        <ChevronDownIcon />
+      </SelectPrimitive.ScrollDownButton>
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
 ))

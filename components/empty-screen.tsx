@@ -1,7 +1,6 @@
 import { UseChatHelpers } from 'ai/react'
 
 import * as React from 'react'
-import {SelectPrompt} from "@/components/prompt-select";
 import {
   Select,
   SelectContent,
