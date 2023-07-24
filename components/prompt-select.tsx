@@ -1,8 +1,6 @@
 import * as React from "react"
 import { UseChatHelpers } from 'ai/react'
 import DigestClient from "digest-fetch"
-import fetch from 'node-fetch'
-globalThis.fetch = fetch
 
 import {
   Select,
@@ -13,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import fetch from "node-fetch";
 
 type Prompts = {
   act: string
@@ -20,35 +19,14 @@ type Prompts = {
 }
 
 async function GetPrompts() {
-  const user = process.env.TIDB_PUBLIC_KEY
-  const password = process.env.TIDB_PRIVATE_KEY
+  const user = 'dOLWR0iB'
+  const password = '0b3b89c1-8b9a-4fea-95ed-ee40be076e3c'
   const client = new DigestClient(user, password)
   const url = 'https://eu-central-1.data.tidbcloud.com/api/v1beta/app/dataapp-Abaflmck/endpoint/prompt'
   const options = {}
   const resp = await client.fetch(url, options)
   const data = await resp.json()
   const prompts: Prompts[] = JSON.parse(data).data.rows
-  // // Recommendation: handle errors
-  // if (!res.ok) {
-  //   // This will activate the closest `error.js` Error Boundary
-  //   throw new Error('Failed to fetch data')
-  // }
-  //
-  // return res.json()
-  // const prompts = [
-  //   {
-  //     act: 'Explain technical concepts',
-  //     prompt: `What is a "serverless function"?`
-  //   },
-  //   {
-  //     act: 'Summarize an article',
-  //     prompt: 'Summarize the following article for a 2nd grader: \n'
-  //   },
-  //   {
-  //     act: 'Draft an email',
-  //     prompt: `Draft an email to my boss about the following: \n`
-  //   }
-  // ]
   return prompts
 }
 
