@@ -42,13 +42,17 @@ async function GetPrompts() {
   // ]
   // const p:Prompts[] = JSON.parse(JSON.stringify(prompts))
   // return p
-  const data = await fetch("https://nextjs-chat-git-prompt-shiyuhang0.vercel.app/api/prompts")
-  const prompts:Prompts[] = await JSON.parse(await data.json())
-  return prompts
+  const res = await fetch('https://nextjs-chat-git-prompt-shiyuhang0.vercel.app/api/prompts')
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
 }
 
 export async function SelectPrompt({setInput}: Pick<UseChatHelpers, 'setInput'>) {
-  const prompts:Prompts[] = await GetPrompts()
+  const data = await GetPrompts()
+  console.log(data)
+  const prompts: Prompts[] = JSON.parse(data)
   return (
       <Select onValueChange={(value) => setInput(value)}>
         <SelectTrigger className="w-[300px]">
