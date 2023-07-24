@@ -4,10 +4,10 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   const connection = await mysql.createConnection({
-    host: 'gateway01.eu-central-1.prod.aws.tidbcloud.com',
+    host: process.env.TIDB_HOST,
     port: 4000,
-    user: '2MrUVkjqnTdnTJ5.vu-mV5Mto5d',
-    password: 'ddQvQ8jmk5cOX!55QqMGCsCf9dXm0FZVAmQS',
+    user: process.env.TIDB_USER,
+    password: process.env.TIDB_PSWD,
     database: 'test',
     ssl: {
       minVersion: 'TLSv1.2',

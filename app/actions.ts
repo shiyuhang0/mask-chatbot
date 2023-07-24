@@ -6,24 +6,13 @@ import { kv } from '@vercel/kv'
 
 import { auth } from '@/auth'
 import { type Chat } from '@/lib/types'
-import mysql from "mysql2/promise";
 
 export async function GetPrompts() {
-  const connection = await mysql.createConnection({
-    host: 'gateway01.eu-central-1.prod.aws.tidbcloud.com',
-    port: 4000,
-    user: '2MrUVkjqnTdnTJ5.vu-mV5Mto5d',
-    password: 'ddQvQ8jmk5cOX!55QqMGCsCf9dXm0FZVAmQS',
-    database: 'test',
-    ssl: {
-      minVersion: 'TLSv1.2',
-      rejectUnauthorized: true
-    }
-  });
-
-  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` limit 50');
-  console.log(rows)
-  return rows
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`)
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
 }
 
 export async function getChats(userId?: string | null) {

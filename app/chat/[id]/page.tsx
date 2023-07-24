@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 
 import { auth } from '@/auth'
-import { getChat } from '@/app/actions'
+import {getChat, GetPrompts} from '@/app/actions'
 import { Chat } from '@/components/chat'
 
 export const preferredRegion = 'home'
@@ -26,14 +26,6 @@ export async function generateMetadata({
   return {
     title: chat?.title.toString().slice(0, 50) ?? 'Chat'
   }
-}
-
-async function GetPrompts() {
-  const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`)
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-  return res.json()
 }
 
 export default async function ChatPage({ params }: ChatPageProps) {
