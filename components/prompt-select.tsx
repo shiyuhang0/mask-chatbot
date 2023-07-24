@@ -52,7 +52,8 @@ async function GetPrompts() {
 export async function SelectPrompt({setInput}: Pick<UseChatHelpers, 'setInput'>) {
   const data = await GetPrompts()
   const rows = data.rows
-  const prompts: Prompts[] = JSON.parse(data)
+  console.log(rows)
+  const prompts: Prompts[] = JSON.parse(rows)
   return (
       <Select onValueChange={(value) => setInput(value)}>
         <SelectTrigger className="w-[300px]">
