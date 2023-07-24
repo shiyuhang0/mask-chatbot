@@ -26,7 +26,7 @@ export async function getChats(userId?: string | null) {
       console.log("getChats failed")
       return []
     }
-    const data = res.json()
+    const data = await res.json()
     console.log(data)
     const rows: ChatRows = JSON.parse(JSON.stringify(data))
     console.log(rows)
@@ -56,7 +56,7 @@ export async function getChat(id: string, userId: string) {
   if (!res.ok) {
     return null
   }
-  const data = res.json()
+  const data = await res.json()
   const rows: ChatRows = JSON.parse(JSON.stringify(data))
   const result : Chat[] = rows.rows
   if (result.length === 0 || (userId && result[0].userId !== userId)) {
@@ -150,7 +150,7 @@ export async function getSharedChat(id: string) {
   if (!res.ok) {
     return null
   }
-  const data = res.json()
+  const data = await res.json()
   const rows: ChatRows = JSON.parse(JSON.stringify(data))
   const result : Chat[] = rows.rows
   if (result.length === 0 || !result[0].sharePath) {
