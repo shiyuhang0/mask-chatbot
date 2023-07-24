@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-async function GetPrompts() {
+function GetPrompts() {
   const prompts = [
     {
       act: 'Explain technical concepts',
@@ -29,10 +29,15 @@ async function GetPrompts() {
   return prompts
 }
 
-export async function SelectPrompt({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
-  const prompts = await GetPrompts()
+export function SelectPrompt({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
+  let prompts = [
+      {
+        act: 'Default value',
+        prompt: `What is a "serverless function"?`
+      }
+  ]
   return (
-      <Select onValueChange={(value)=>setInput(value)}>
+      <Select onValueChange={(value)=>setInput(value)} onOpenChange={() => prompts = GetPrompts()}>
         <SelectTrigger className="w-[300px]">
           <SelectValue placeholder="Act as"/>
         </SelectTrigger>
