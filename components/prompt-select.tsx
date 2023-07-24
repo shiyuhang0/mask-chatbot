@@ -1,6 +1,5 @@
 import * as React from "react"
 import { UseChatHelpers } from 'ai/react'
-import mysql from 'mysql2/promise';
 
 import {
   Select,
@@ -43,23 +42,9 @@ async function GetPrompts() {
   // ]
   // const p:Prompts[] = JSON.parse(JSON.stringify(prompts))
   // return p
-
-  const connection = await mysql.createConnection({
-    host: 'gateway01.eu-central-1.prod.aws.tidbcloud.com',
-    port: 4000,
-    user: '2MrUVkjqnTdnTJ5.vu-mV5Mto5d',
-    password: 'ddQvQ8jmk5cOX!55QqMGCsCf9dXm0FZVAmQS',
-    database: 'test',
-    ssl: {
-      minVersion: 'TLSv1.2',
-      rejectUnauthorized: true
-    }
-  })
-
-  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` limit 10')
-  const p:Prompts[] = JSON.parse(JSON.stringify(rows))
-  return p
-
+  const data = await fetch("https://nextjs-chat-git-prompt-shiyuhang0.vercel.app/api/prompts")
+  const prompts:Prompts[] = await JSON.parse(await data.json())
+  return prompts
 }
 
 export async function SelectPrompt({setInput}: Pick<UseChatHelpers, 'setInput'>) {
