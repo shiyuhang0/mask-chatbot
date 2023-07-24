@@ -34,3 +34,38 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ success: true })
 }
+
+export async function GET(request: NextRequest) {
+  const connection = await mysql.createConnection({
+    host: process.env.TIDB_HOST,
+    port: 4000,
+    user: process.env.TIDB_USER,
+    password: process.env.TIDB_PSWD,
+    database: 'test',
+    ssl: {
+      minVersion: 'TLSv1.2',
+      rejectUnauthorized: true
+    }
+  });
+
+  const query = await request.formData()
+  console.log(query)
+
+  const userId = query.get('userId')
+  const id = query.get('id')
+
+  console.log(userId)
+  console.log(id)
+
+  if (userId === "") {
+    return NextResponse.json({ success: false })
+  }
+
+  if (id === "") {
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
+    return NextResponse.json({ rows })
+  }
+
+  const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=? ', [id]);
+  return NextResponse.json({ rows })
+}
