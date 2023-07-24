@@ -54,12 +54,11 @@ const SelectContent = React.forwardRef<
         position === 'popper' && 'translate-y-1',
         className
       )}
-      position={position}
+      position={'popper'}
+      hideWhenDetached={true}
       {...props}
     >
-      <SelectPrimitive.ScrollUpButton>
-        <IconChevronUpDown />
-      </SelectPrimitive.ScrollUpButton>
+      <SelectPrimitive.ScrollUpButton/>
       <SelectPrimitive.Viewport
         className={cn(
           'p-1',
@@ -69,9 +68,7 @@ const SelectContent = React.forwardRef<
       >
         {children}
       </SelectPrimitive.Viewport>
-      <SelectPrimitive.ScrollDownButton>
-        <IconArrowDown />
-      </SelectPrimitive.ScrollDownButton>
+      <SelectPrimitive.ScrollDownButton/>
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
 ))
