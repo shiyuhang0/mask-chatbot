@@ -2,10 +2,6 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 // const prisma = new PrismaClient()
 
-type Props = {
-  prompts: Prompt[]
-};
-
 type Prompt = {
   act: string
   prompt: string

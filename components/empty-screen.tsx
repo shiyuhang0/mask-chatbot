@@ -32,19 +32,6 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
         <p className="leading-normal text-muted-foreground">
           You can select a role and we will generate the best prompt for you:
         </p>
-        {/*<div className="mt-4 flex flex-col items-start space-y-2">*/}
-        {/*  {exampleMessages.map((message, index) => (*/}
-        {/*    <Button*/}
-        {/*      key={index}*/}
-        {/*      variant="link"*/}
-        {/*      className="h-auto p-0 text-base"*/}
-        {/*      onClick={() => setInput(message.message)}*/}
-        {/*    >*/}
-        {/*      <IconArrowRight className="mr-2 text-muted-foreground" />*/}
-        {/*      {message.heading}*/}
-        {/*    </Button>*/}
-        {/*  ))}*/}
-        {/*</div>*/}
         <div className="mt-4 flex flex-col items-start space-y-2">
           {/*<Select onValueChange={(value)=>setInput(value)}>*/}
           {/*  <SelectTrigger className="w-[300px]">*/}
@@ -61,10 +48,10 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
           {/*    </SelectGroup>*/}
           {/*  </SelectContent>*/}
           {/*</Select>*/}
-          {/*<React.Suspense fallback={<div className="flex-1 overflow-auto" />}>*/}
-            {/* @ts-ignore */}
+          <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
+             {/*@ts-ignore */}
             <SelectPrompt setInput={setInput}/>
-          {/*</React.Suspense>*/}
+          </React.Suspense>
         </div>
       </div>
     </div>
