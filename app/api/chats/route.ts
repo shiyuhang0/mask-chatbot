@@ -111,7 +111,7 @@ export async function DELETE(request: NextRequest) {
   const id = searchParams.get('id')
 
   if (id !== null && userId !== null) {
-    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=? and id=?', [userId,id]);
+    const [rows, fields] =  await connection.execute('DELETE FROM `chats` where userId=? and id=?', [userId,id]);
     return NextResponse.json({ rows })
   }
 
