@@ -11,6 +11,10 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+type Rows = {
+  rows: Prompts[]
+}
+
 type Prompts = {
   act: string
   prompt: string
@@ -46,14 +50,13 @@ async function GetPrompts() {
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
-  return res.json()
+  const data = await res.json()
+  const prompts: Rows = JSON.parse(data)
+  return prompts.rows
 }
 
 export async function SelectPrompt({setInput}: Pick<UseChatHelpers, 'setInput'>) {
-  const data = await GetPrompts()
-  const rows = data.rows
-  console.log(rows)
-  const prompts: Prompts[] = JSON.parse(rows)
+  const prompts: Prompts[] = await GetPrompts()
   return (
       <Select onValueChange={(value) => setInput(value)}>
         <SelectTrigger className="w-[300px]">
