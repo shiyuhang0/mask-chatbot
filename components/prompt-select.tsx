@@ -1,5 +1,6 @@
 import * as React from "react"
 import { UseChatHelpers } from 'ai/react'
+import mysql from 'mysql2/promise';
 
 import {
   Select,
@@ -26,21 +27,37 @@ async function GetPrompts() {
   // const data = await resp.json()
   // const prompts: Prompts[] = JSON.parse(data).data.rows
   // return prompts
-  const prompts = [
-    {
-      act: 'Explain technical concepts',
-      prompt: `What is a "serverless function"?`
-    },
-    {
-      act: 'Summarize an article',
-      prompt: 'Summarize the following article for a 2nd grader: \n'
-    },
-    {
-      act: 'Draft an email',
-      prompt: `Draft an email to my boss about the following: \n`
+  // const prompts = [
+  //   {
+  //     act: 'Explain technical concepts',
+  //     prompt: `What is a "serverless function"?`
+  //   },
+  //   {
+  //     act: 'Summarize an article',
+  //     prompt: 'Summarize the following article for a 2nd grader: \n'
+  //   },
+  //   {
+  //     act: 'Draft an email',
+  //     prompt: `Draft an email to my boss about the following: \n`
+  //   }
+  // ]
+  // const p:Prompts[] = JSON.parse(JSON.stringify(prompts))
+  // return p
+
+  const connection = await mysql.createConnection({
+    host: 'gateway01.eu-central-1.prod.aws.tidbcloud.com',
+    port: 4000,
+    user: '2MrUVkjqnTdnTJ5.vu-mV5Mto5d',
+    password: 'ddQvQ8jmk5cOX!55QqMGCsCf9dXm0FZVAmQS',
+    database: 'test',
+    ssl: {
+      minVersion: 'TLSv1.2',
+      rejectUnauthorized: true
     }
-  ]
-  const p:Prompts[] = JSON.parse(JSON.stringify(prompts))
+  })
+
+  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` limit 10')
+  const p:Prompts[] = JSON.parse(JSON.stringify(rows))
   return p
 
 }
