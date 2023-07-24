@@ -3,8 +3,17 @@ import { Chat } from '@/components/chat'
 
 export const runtime = 'edge'
 
-export default function IndexPage() {
-  const id = nanoid()
+async function GetPrompts() {
+  const res = await fetch('https://nextjs-chat-git-prompt-shiyuhang0.vercel.app/api/prompts')
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
+}
 
-  return <Chat id={id} />
+export default async function IndexPage() {
+  const id = nanoid()
+  const prompts = JSON.stringify(await GetPrompts())
+
+  return <Chat id={id} prompts={prompts}/>
 }
