@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     }
   });
 
-  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` limit 2');
+  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` limit 10');
 
   return NextResponse.json({ rows })
 }
