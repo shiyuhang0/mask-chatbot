@@ -55,6 +55,7 @@ export async function GET(request: Request) {
 
   if (id !== null && userId !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=? and id=?', [userId,id]);
+    console.log("get: "+rows)
     return NextResponse.json({ rows })
   }
 

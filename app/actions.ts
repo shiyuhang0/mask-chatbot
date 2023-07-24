@@ -27,7 +27,7 @@ export async function getChats(userId?: string | null) {
       return []
     }
     const data = await res.json()
-    console.log(data)
+    console.log(JSON.stringify(data))
     const rows: ChatRows = JSON.parse(JSON.stringify(data))
     console.log(rows)
     const result : Chat[] = rows.rows
@@ -59,7 +59,9 @@ export async function getChat(id: string, userId: string) {
   const data = await res.json()
   const rows: ChatRows = JSON.parse(JSON.stringify(data))
   const result : Chat[] = rows.rows
+  console.log(result)
   if (result.length === 0 || (userId && result[0].userId !== userId)) {
+    console.log("return null")
     return null
   }
   return result[0] as Chat
