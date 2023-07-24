@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 // import { kv } from '@vercel/kv'
 
 import { auth } from '@/auth'
-import { type Chat } from '@/lib/types'
+import {type Chat, ChatRows} from '@/lib/types'
 
 export async function GetPrompts() {
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`)
@@ -21,41 +21,51 @@ export async function getChats(userId?: string | null) {
   }
 
   try {
-    // const res = await fetch(`https://${process.env.VERCEL_URL}/api/chats?userID=${userId}`)
-    // if (!res.ok) {
-    //   throw new Error('Failed to fetch data')
-    // }
-    // const data = res.json()
-    // const rows = data.rows
-    // const rows: Rows = JSON.parse(data.rows)
-    // const myPrompts : Prompts[] = rows.rows
-    // const result : Chat[] = JSON.parse(JSON.stringify(data))
-    // return result as Chat[]
-    const pipeline = kv.pipeline()
-    const chats: string[] = await kv.zrange(`user:chat:${userId}`, 0, -1, {
-      rev: true
-    })
-
-    for (const chat of chats) {
-      pipeline.hgetall(chat)
+    const res = await fetch(`https://${process.env.VERCEL_URL}/api/chats?userId=${userId}`)
+    if (!res.ok) {
+      return []
     }
-
-    const results = await pipeline.exec()
-
-    return results as Chat[]
+    const data = res.json()
+    const rows: ChatRows = JSON.parse(JSON.stringify(data))
+    const result : Chat[] = rows.rows
+    return result as Chat[]
+    // const pipeline = kv.pipeline()
+    // const chats: string[] = await kv.zrange(`user:chat:${userId}`, 0, -1, {
+    //   rev: true
+    // })
+    //
+    // for (const chat of chats) {
+    //   pipeline.hgetall(chat)
+    // }
+    //
+    // const results = await pipeline.exec()
+    //
+    // return results as Chat[]
   } catch (error) {
     return []
   }
 }
 
 export async function getChat(id: string, userId: string) {
-  const chat = await kv.hgetall<Chat>(`chat:${id}`)
 
-  if (!chat || (userId && chat.userId !== userId)) {
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/chats?userId=${userId}&id=${id}`)
+  if (!res.ok) {
     return null
   }
+  const data = res.json()
+  const rows: ChatRows = JSON.parse(JSON.stringify(data))
+  const result : Chat[] = rows.rows
+  if (result.length === 0 || (userId && result[0].userId !== userId)) {
+    return null
+  }
+  return result[0] as Chat
 
-  return chat
+  // const chat = await kv.hgetall<Chat>(`chat:${id}`)
+  //
+  // if (!chat || (userId && chat.userId !== userId)) {
+  //   return null
+  // }
+  // return chat
 }
 
 export async function removeChat({ id, path }: { id: string; path: string }) {
@@ -67,16 +77,27 @@ export async function removeChat({ id, path }: { id: string; path: string }) {
     }
   }
 
-  const uid = await kv.hget<string>(`chat:${id}`, 'userId')
-
-  if (uid !== session?.user?.id) {
+  const uid = session?.user?.id
+  if (!uid) {
     return {
       error: 'Unauthorized'
     }
   }
 
-  await kv.del(`chat:${id}`)
-  await kv.zrem(`user:chat:${session.user.id}`, `chat:${id}`)
+  // const uid = await kv.hget<string>(`chat:${id}`, 'userId')
+  //
+  // if (uid !== session?.user?.id) {
+  //   return {
+  //     error: 'Unauthorized'
+  //   }
+  // }
+
+  // await kv.del(`chat:${id}`)
+  // await kv.zrem(`user:chat:${session.user.id}`, `chat:${id}`)
+
+  await fetch(`https://${process.env.VERCEL_URL}/api/chats?userId=${uid}&id=${id}`,{
+    method: 'DELETE'
+  })
 
   revalidatePath('/')
   return revalidatePath(path)
@@ -91,31 +112,47 @@ export async function clearChats() {
     }
   }
 
-  const chats: string[] = await kv.zrange(`user:chat:${session.user.id}`, 0, -1)
-  if (!chats.length) {
-  return redirect('/')
-  }
-  const pipeline = kv.pipeline()
+ // const chats: string[] = await kv.zrange(`user:chat:${session.user.id}`, 0, -1)
 
-  for (const chat of chats) {
-    pipeline.del(chat)
-    pipeline.zrem(`user:chat:${session.user.id}`, chat)
-  }
+  // if (!chats.length) {
+  // return redirect('/')
+  // }
+  // const pipeline = kv.pipeline()
+  //
+  // for (const chat of chats) {
+  //   pipeline.del(chat)
+  //   pipeline.zrem(`user:chat:${session.user.id}`, chat)
+  // }
+  //
+  // await pipeline.exec()
 
-  await pipeline.exec()
+  await fetch(`https://${process.env.VERCEL_URL}/api/chats?userId=${session.user.id}`,{
+    method: 'DELETE'
+  })
 
   revalidatePath('/')
   return redirect('/')
 }
 
 export async function getSharedChat(id: string) {
-  const chat = await kv.hgetall<Chat>(`chat:${id}`)
+  // const chat = await kv.hgetall<Chat>(`chat:${id}`)
+  // if (!chat || !chat.sharePath) {
+  //   return null
+  // }
+  //
+  // return chat
 
-  if (!chat || !chat.sharePath) {
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/chats?id=${id}`)
+  if (!res.ok) {
     return null
   }
-
-  return chat
+  const data = res.json()
+  const rows: ChatRows = JSON.parse(JSON.stringify(data))
+  const result : Chat[] = rows.rows
+  if (result.length === 0 || !result[0].sharePath) {
+    return null
+  }
+  return result[0] as Chat
 }
 
 export async function shareChat(chat: Chat) {
@@ -127,12 +164,25 @@ export async function shareChat(chat: Chat) {
     }
   }
 
+  const sharePath = `/share/${chat.id}`
+
   const payload = {
     ...chat,
-    sharePath: `/share/${chat.id}`
+    sharePath: sharePath
   }
+  //
+  // await kv.hmset(`chat:${chat.id}`, payload)
+  //
+  // return payload
 
-  await kv.hmset(`chat:${chat.id}`, payload)
+  const body = {
+    id: chat.id,
+    sharePath: sharePath
+  }
+  await fetch(`https://${process.env.VERCEL_URL}/api/chats`, {
+        method: 'PUT',
+        body: JSON.stringify(body),
+      })
 
   return payload
 }

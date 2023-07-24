@@ -58,6 +58,11 @@ export async function GET(request: Request) {
     return NextResponse.json({ rows })
   }
 
+  if (id !== null) {
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=?', [id]);
+    return NextResponse.json({ rows })
+  }
+
   if (userId !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
     return NextResponse.json({ rows })
