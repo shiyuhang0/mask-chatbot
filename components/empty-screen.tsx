@@ -62,21 +62,6 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
           You can select a role and we will generate the best prompt for you:
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
-          {/*<Select onValueChange={(value)=>setInput(value)}>*/}
-          {/*  <SelectTrigger className="w-[300px]">*/}
-          {/*    <SelectValue placeholder="Act as"/>*/}
-          {/*  </SelectTrigger>*/}
-          {/*  <SelectContent>*/}
-          {/*    <SelectGroup>*/}
-          {/*      <SelectLabel>Act as</SelectLabel>*/}
-          {/*      {prompts.map((item, index) => (*/}
-          {/*          <SelectItem key={index} value={item.prompt}>*/}
-          {/*              {item.act}*/}
-          {/*          </SelectItem>*/}
-          {/*      ))}*/}
-          {/*    </SelectGroup>*/}
-          {/*  </SelectContent>*/}
-          {/*</Select>*/}
           <Select onValueChange={(value) => setInput(value)}>
             <SelectTrigger className="w-[300px]">
               <SelectValue placeholder="Act as"/>
