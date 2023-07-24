@@ -1,6 +1,7 @@
 import mysql from 'mysql2/promise';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 
 export async function POST(request: NextRequest) {
@@ -35,7 +36,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ success: true })
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(request: VercelRequest) {
   const connection = await mysql.createConnection({
     host: process.env.TIDB_HOST,
     port: 4000,
@@ -48,11 +49,11 @@ export async function GET(request: NextRequest) {
     }
   });
 
-  const query = await request.formData()
+  const query = request.query
   console.log(query)
 
-  const userId = query.get('userId')
-  const id = query.get('id')
+  const userId = query.userId
+  const id = query.id
 
   console.log(userId)
   console.log(id)
