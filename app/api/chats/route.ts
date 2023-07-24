@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
     }
   });
 
-  const data = await request.json()
-  const payload = data.payload
+  const payload = await request.json()
+  console.log(payload)
 
   if (payload === null) {
     return NextResponse.json({ success: false })
@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
   const createdAt = payload.createdAt
   const path = payload.path
   const messages = JSON.stringify(payload.messages)
+  console.log(id, title, userId, createdAt, path, messages)
 
   await connection.execute('INSERT INTO `chats` (id, title, userId, createdAt, path, messages) VALUES (?, ?, ?, ?, ?, ?)', [id, title, userId, createdAt, path, messages]);
 
