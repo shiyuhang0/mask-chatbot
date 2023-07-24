@@ -5,8 +5,6 @@ import { Configuration, OpenAIApi } from 'openai-edge'
 import { auth } from '@/auth'
 import { nanoid } from '@/lib/utils'
 import mysql from "mysql2/promise";
-import {NextResponse} from "next/server";
-import { type Chat } from '@/lib/types'
 
 export const runtime = 'edge'
 
@@ -15,29 +13,6 @@ const configuration = new Configuration({
 })
 
 const openai = new OpenAIApi(configuration)
-
-async function insertChat(payload:object) {
-  const connection = await mysql.createConnection({
-    host: process.env.TIDB_HOST,
-    port: 4000,
-    user: process.env.TIDB_USER,
-    password: process.env.TIDB_PSWD,
-    database: 'test',
-    ssl: {
-      minVersion: 'TLSv1.2',
-      rejectUnauthorized: true
-    }
-  });
-
-  const id = payload.id
-  const title = payload.title
-  const userId = payload.userId
-  const createdAt = payload.createdAt
-  const path = payload.path
-  const messages = JSON.stringify(payload.messages)
-
-  await connection.execute('INSERT INTO `chats` (id, title, userId, createdAt, path, messages) VALUES (?, ?, ?, ?, ?, ?)', [id, title, userId, createdAt, path, messages]);
-}
 
 export async function POST(req: Request) {
   const json = await req.json()
@@ -87,7 +62,10 @@ export async function POST(req: Request) {
         member: `chat:${id}`
       })
 
-      await insertChat(payload)
+      await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
+        method: 'POST',
+        body: JSON.stringify(payload)
+      })
     }
   })
 
