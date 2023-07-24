@@ -1,7 +1,6 @@
 import mysql from 'mysql2/promise';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 
 export async function POST(request: NextRequest) {
@@ -36,7 +35,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ success: true })
 }
 
-export async function GET(request: VercelRequest) {
+export async function GET(request: Request) {
   const connection = await mysql.createConnection({
     host: process.env.TIDB_HOST,
     port: 4000,
@@ -49,24 +48,29 @@ export async function GET(request: VercelRequest) {
     }
   });
 
-  const query = request.query
-  console.log(query)
+  const { searchParams } = new URL(request.url)
 
-  const userId = query.userId
-  const id = query.id
+  // get userId from url
+  // const query = Object.fromEntries(new URLSearchParams(url.split('?')[1]))
+  // console.log(query)
+  // const userId = query.userId
+  // const id = query.id
+
+  const userId = searchParams.get('userId')
+  const id = searchParams.get('id')
 
   console.log(userId)
   console.log(id)
 
-  if (userId === "") {
-    return NextResponse.json({ success: false })
-  }
-
-  if (id === "") {
+  if (userId !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
     return NextResponse.json({ rows })
   }
 
-  const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=? ', [id]);
-  return NextResponse.json({ rows })
+  if (id !== null) {
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
+    return NextResponse.json({ rows })
+  }
+
+  return  NextResponse.json({ success: false })
 }
