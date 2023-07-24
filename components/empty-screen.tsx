@@ -10,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import {Combobox} from "@/components/test";
 
 const exampleMessages = [
   {
@@ -26,6 +25,12 @@ const exampleMessages = [
     message: `Draft an email to my boss about the following: \n`
   }
 ]
+
+export interface PromptProps
+    extends Pick<UseChatHelpers, 'input' | 'setInput'> {
+  onSubmit: (value: string) => Promise<void>
+  isLoading: boolean
+}
 
 export interface EmptyScreenProps extends Pick<UseChatHelpers, 'setInput'> {
   prompts: string
@@ -75,9 +80,6 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
           {/*   /!*@ts-ignore *!/*/}
           {/*  <SelectPrompt setInput={setInput}/>*/}
           {/*</React.Suspense>*/}
-        </div>
-        <div className="mt-4 flex flex-col items-start space-y-2">
-          <Combobox setInput={setInput} prompts={prompts}/>
         </div>
       </div>
     </div>
