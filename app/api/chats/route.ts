@@ -23,14 +23,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false })
   }
 
-
   const id = payload.id
   const title = payload.title
   const userId = payload.userId
   const createdAt = payload.createdAt
   const path = payload.path
   const messages = JSON.stringify(payload.messages)
-  console.log(id, title, userId, createdAt, path, messages)
 
   await connection.execute('INSERT INTO `chats` (id, title, userId, createdAt, path, messages) VALUES (?, ?, ?, ?, ?, ?)', [id, title, userId, createdAt, path, messages]);
 
