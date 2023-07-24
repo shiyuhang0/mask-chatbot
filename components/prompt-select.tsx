@@ -41,7 +41,6 @@ async function GetPrompts() {
     }
   ]
   const p:Prompts[] = JSON.parse(JSON.stringify(prompts))
-  console.log(p)
   return p
 
 }
