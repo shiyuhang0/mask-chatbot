@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: Request) {
+  console.log("GET")
   const connection = await mysql.createConnection({
     host: process.env.TIDB_HOST,
     port: 4000,
@@ -109,6 +110,10 @@ export async function DELETE(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const userId = searchParams.get('userId')
   const id = searchParams.get('id')
+
+  console.log("DELETE")
+  console.log(userId)
+  console.log(id)
 
   if (id !== null && userId !== null) {
     const [rows, fields] =  await connection.execute('DELETE FROM `chats` where userId=? and id=?', [userId,id]);

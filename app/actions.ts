@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { kv } from '@vercel/kv'
+// import { kv } from '@vercel/kv'
 
 import { auth } from '@/auth'
 import { type Chat } from '@/lib/types'
@@ -21,6 +21,16 @@ export async function getChats(userId?: string | null) {
   }
 
   try {
+    // const res = await fetch(`https://${process.env.VERCEL_URL}/api/chats?userID=${userId}`)
+    // if (!res.ok) {
+    //   throw new Error('Failed to fetch data')
+    // }
+    // const data = res.json()
+    // const rows = data.rows
+    // const rows: Rows = JSON.parse(data.rows)
+    // const myPrompts : Prompts[] = rows.rows
+    // const result : Chat[] = JSON.parse(JSON.stringify(data))
+    // return result as Chat[]
     const pipeline = kv.pipeline()
     const chats: string[] = await kv.zrange(`user:chat:${userId}`, 0, -1, {
       rev: true
