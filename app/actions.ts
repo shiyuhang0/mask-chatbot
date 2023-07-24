@@ -7,6 +7,14 @@ import { kv } from '@vercel/kv'
 import { auth } from '@/auth'
 import { type Chat } from '@/lib/types'
 
+export async function GetPrompts() {
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`)
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
+}
+
 export async function getChats(userId?: string | null) {
   if (!userId) {
     return []
