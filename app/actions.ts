@@ -58,10 +58,7 @@ export async function getChat(id: string, userId: string) {
   const rows: ChatRows = JSON.parse(JSON.stringify(data))
   const result : Chat[] = rows.rows
   console.log(result)
-  if (result.length === 0 || (userId && result[0].userId !== userId)) {
-    console.log("getChat failed")
-    console.log(userId)
-    console.log(result[0].userId)
+  if (result.length === 0) {
     return null
   }
   return result[0] as Chat
@@ -164,11 +161,11 @@ export async function getSharedChat(id: string) {
 export async function shareChat(chat: Chat) {
   const session = await auth()
 
-  if (!session?.user?.id || session.user.id !== chat.userId) {
-    return {
-      error: 'Unauthorized'
-    }
-  }
+  // if (!session?.user?.id || session.user.id !== chat.userId) {
+  //   return {
+  //     error: 'Unauthorized'
+  //   }
+  // }
 
   const sharePath = `/share/${chat.id}`
 

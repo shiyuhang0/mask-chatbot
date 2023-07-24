@@ -36,7 +36,6 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: Request) {
-  console.log("GET")
   const connection = await mysql.createConnection({
     host: process.env.TIDB_HOST,
     port: 4000,
@@ -55,17 +54,20 @@ export async function GET(request: Request) {
 
   if (id !== null && userId !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=? and id=?', [userId,id]);
-    console.log("get: "+rows)
+    console.log("GET chat by userId and id")
+    console.log(rows)
     return NextResponse.json({ rows })
   }
 
   if (id !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=?', [id]);
+    console.log("GET chat by id")
     return NextResponse.json({ rows })
   }
 
   if (userId !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
+    console.log("GET chats by userId")
     console.log(rows)
     return NextResponse.json({ rows })
   }
