@@ -65,7 +65,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
             <SelectTrigger className="w-[300px]">
               <SelectValue placeholder="Act as"/>
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent hideWhenDetached={true}>
               <SelectGroup>
                 <SelectLabel>Act as</SelectLabel>
                 {myPrompts.map((item, index) => (
