@@ -56,20 +56,17 @@ export async function POST(req: Request) {
         ]
       }
 
-      console.log("start save to db")
-      console.log(`${process.env.VERCEL_URL}`)
-      const data = await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
-        method: 'POST',
-        body: JSON.stringify(payload)
-      })
-      console.log(data.json())
-
       await kv.hmset(`chat:${id}`, payload)
       await kv.zadd(`user:chat:${userId}`, {
         score: createdAt,
         member: `chat:${id}`
       })
 
+      console.log("start save to db")
+      await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
+        method: 'POST',
+        body: JSON.stringify(payload)
+      })
     }
   })
 
