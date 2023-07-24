@@ -65,6 +65,7 @@ export async function GET(request: Request) {
 
   if (userId !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
+    console.log(rows)
     return NextResponse.json({ rows })
   }
 

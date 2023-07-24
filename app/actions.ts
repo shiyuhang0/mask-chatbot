@@ -23,11 +23,15 @@ export async function getChats(userId?: string | null) {
   try {
     const res = await fetch(`https://${process.env.VERCEL_URL}/api/chats?userId=${userId}`)
     if (!res.ok) {
+      console.log("getChats failed")
       return []
     }
     const data = res.json()
+    console.log(data)
     const rows: ChatRows = JSON.parse(JSON.stringify(data))
+    console.log(rows)
     const result : Chat[] = rows.rows
+    console.log(result)
     return result as Chat[]
     // const pipeline = kv.pipeline()
     // const chats: string[] = await kv.zrange(`user:chat:${userId}`, 0, -1, {
