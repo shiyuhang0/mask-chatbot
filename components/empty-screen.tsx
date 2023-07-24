@@ -2,6 +2,15 @@ import { UseChatHelpers } from 'ai/react'
 
 import * as React from 'react'
 import {SelectPrompt} from "@/components/prompt-select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 const exampleMessages = [
   {
@@ -18,8 +27,28 @@ const exampleMessages = [
   }
 ]
 
+export interface PromptProps
+    extends Pick<UseChatHelpers, 'input' | 'setInput'> {
+  onSubmit: (value: string) => Promise<void>
+  isLoading: boolean
+}
 
-export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
+export interface EmptyScreenProps extends Pick<UseChatHelpers, 'setInput'> {
+  prompts: string
+}
+
+type Rows = {
+  rows: Prompts[]
+}
+
+type Prompts = {
+  act: string
+  prompt: string
+}
+
+export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
+  const rows: Rows = JSON.parse(prompts)
+  const myPrompts : Prompts[] = rows.rows
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
@@ -48,10 +77,25 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
           {/*    </SelectGroup>*/}
           {/*  </SelectContent>*/}
           {/*</Select>*/}
-          <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
-             {/*@ts-ignore */}
-            <SelectPrompt setInput={setInput}/>
-          </React.Suspense>
+          <Select onValueChange={(value) => setInput(value)}>
+            <SelectTrigger className="w-[300px]">
+              <SelectValue placeholder="Act as"/>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Act as</SelectLabel>
+                {myPrompts.map((item, index) => (
+                    <SelectItem key={index} value={item.prompt}>
+                      {item.act}
+                    </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          {/*<React.Suspense fallback={<div className="flex-1 overflow-auto" />}>*/}
+          {/*   /!*@ts-ignore *!/*/}
+          {/*  <SelectPrompt setInput={setInput}/>*/}
+          {/*</React.Suspense>*/}
         </div>
       </div>
     </div>

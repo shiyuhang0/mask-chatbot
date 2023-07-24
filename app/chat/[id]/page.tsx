@@ -28,6 +28,14 @@ export async function generateMetadata({
   }
 }
 
+async function GetPrompts() {
+  const res = await fetch('https://nextjs-chat-git-prompt-shiyuhang0.vercel.app/api/prompts')
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
+}
+
 export default async function ChatPage({ params }: ChatPageProps) {
   const session = await auth()
 
@@ -36,6 +44,8 @@ export default async function ChatPage({ params }: ChatPageProps) {
   }
 
   const chat = await getChat(params.id, session.user.id)
+  const prompts = JSON.stringify(await GetPrompts())
+
 
   if (!chat) {
     notFound()
@@ -45,5 +55,5 @@ export default async function ChatPage({ params }: ChatPageProps) {
     notFound()
   }
 
-  return <Chat id={chat.id} initialMessages={chat.messages} />
+  return <Chat id={chat.id} initialMessages={chat.messages} prompts={prompts}/>
 }
