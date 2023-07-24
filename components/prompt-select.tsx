@@ -11,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import fetch from "node-fetch";
 
 type Prompts = {
   act: string
@@ -21,10 +20,21 @@ type Prompts = {
 async function GetPrompts() {
   const user = 'dOLWR0iB'
   const password = '0b3b89c1-8b9a-4fea-95ed-ee40be076e3c'
-  const client = new DigestClient(user, password)
+  // const client = new DigestClient(user, password)
   const url = 'https://eu-central-1.data.tidbcloud.com/api/v1beta/app/dataapp-Abaflmck/endpoint/prompt'
-  const options = {}
-  const resp = await client.fetch(url, options)
+  // const options = {}
+  // const resp = await client.fetch(url, options)
+  // const data = await resp.json()
+  // const prompts: Prompts[] = JSON.parse(data).data.rows
+  // return prompts
+
+  // use digest auth
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Digest ' + btoa(user + ':' + password)
+    }
+  })
   const data = await resp.json()
   const prompts: Prompts[] = JSON.parse(data).data.rows
   return prompts
