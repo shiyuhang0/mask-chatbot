@@ -52,13 +52,13 @@ export async function GET(request: Request) {
   const userId = searchParams.get('userId')
   const id = searchParams.get('id')
 
-  if (userId !== null) {
-    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
+  if (id !== null && userId !== null) {
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=? and id=?', [userId,id]);
     return NextResponse.json({ rows })
   }
 
-  if (id !== null) {
-    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=?', [id]);
+  if (userId !== null) {
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
     return NextResponse.json({ rows })
   }
 
@@ -88,7 +88,7 @@ export async function PUT(request: NextRequest) {
   const id = payload.id
   const sharePath = payload.sharePath
 
-  await connection.execute('INSERT INTO `chats` (sharePath) VALUES (?) where id = ?', [id, sharePath]);
+  await connection.execute('UPDATE `chats` SET sharePath=? where id = ?', [sharePath,id]);
 
   return NextResponse.json({ success: true })
 }
@@ -110,13 +110,13 @@ export async function DELETE(request: NextRequest) {
   const userId = searchParams.get('userId')
   const id = searchParams.get('id')
 
-  if (userId !== null) {
-    const [rows, fields] =  await connection.execute('DELETE FROM `chats` where userId=?', [userId]);
+  if (id !== null && userId !== null) {
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=? and id=?', [userId,id]);
     return NextResponse.json({ rows })
   }
 
-  if (id !== null) {
-    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=?', [id]);
+  if (userId !== null) {
+    const [rows, fields] =  await connection.execute('DELETE FROM `chats` where userId=?', [userId]);
     return NextResponse.json({ rows })
   }
 
