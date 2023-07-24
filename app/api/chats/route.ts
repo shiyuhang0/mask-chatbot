@@ -49,18 +49,8 @@ export async function GET(request: Request) {
   });
 
   const { searchParams } = new URL(request.url)
-
-  // get userId from url
-  // const query = Object.fromEntries(new URLSearchParams(url.split('?')[1]))
-  // console.log(query)
-  // const userId = query.userId
-  // const id = query.id
-
   const userId = searchParams.get('userId')
   const id = searchParams.get('id')
-
-  console.log(userId)
-  console.log(id)
 
   if (userId !== null) {
     const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
@@ -68,7 +58,65 @@ export async function GET(request: Request) {
   }
 
   if (id !== null) {
-    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where userId=?', [userId]);
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=?', [id]);
+    return NextResponse.json({ rows })
+  }
+
+  return  NextResponse.json({ success: false })
+}
+
+export async function PUT(request: NextRequest) {
+  const connection = await mysql.createConnection({
+    host: process.env.TIDB_HOST,
+    port: 4000,
+    user: process.env.TIDB_USER,
+    password: process.env.TIDB_PSWD,
+    database: 'test',
+    ssl: {
+      minVersion: 'TLSv1.2',
+      rejectUnauthorized: true
+    }
+  });
+
+  const payload = await request.json()
+  console.log(payload)
+
+  if (payload === null) {
+    return NextResponse.json({ success: false })
+  }
+
+  const id = payload.id
+  const sharePath = payload.sharePath
+
+  await connection.execute('INSERT INTO `chats` (sharePath) VALUES (?) where id = ?', [id, sharePath]);
+
+  return NextResponse.json({ success: true })
+}
+
+export async function DELETE(request: NextRequest) {
+  const connection = await mysql.createConnection({
+    host: process.env.TIDB_HOST,
+    port: 4000,
+    user: process.env.TIDB_USER,
+    password: process.env.TIDB_PSWD,
+    database: 'test',
+    ssl: {
+      minVersion: 'TLSv1.2',
+      rejectUnauthorized: true
+    }
+  });
+
+  const { searchParams } = new URL(request.url)
+  const userId = searchParams.get('userId')
+  const id = searchParams.get('id')
+
+  if (userId !== null) {
+    const [rows, fields] =  await connection.execute('DELETE FROM `chats` where userId=?', [userId]);
+    return NextResponse.json({ rows })
+  }
+
+  if (id !== null) {
+    const [rows, fields] =  await connection.execute('SELECT * FROM `chats` where id=?', [id]);
     return NextResponse.json({ rows })
   }
 
