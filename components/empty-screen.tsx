@@ -63,8 +63,8 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
         <p className="leading-normal text-muted-foreground">
           You can select a role and we will generate the best prompt for you:
         </p>
-        <div className="mt-4 flex flex-row items-start space-x-2">
-          <div className="w-2/3">
+        <div className="mt-4 flex flex-row items-start space-x-1">
+          <div className="items-start">
             <Select onValueChange={(value) => setInput(value)}>
               <SelectTrigger className="w-[300px]">
                 <SelectValue placeholder="Act as"/>

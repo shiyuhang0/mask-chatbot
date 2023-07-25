@@ -1,8 +1,6 @@
 "use client"
 
-import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -15,13 +13,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import {redirect} from "next/navigation";
 import {Input} from "@/components/ui/input";
 
@@ -55,7 +46,7 @@ export function PromptAdd() {
                   <FormItem>
                     <FormLabel>RoleName</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter the role name" {...field} />
+                        <Input placeholder="the role name" {...field} />
                       </FormControl>
                     <FormDescription>
                       Please enter the role name
@@ -63,7 +54,7 @@ export function PromptAdd() {
                     <FormMessage />
                     <FormLabel>Prompt</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter the prompt" {...field} />
+                      <Input placeholder="the prompt" {...field} />
                     </FormControl>
                     <FormDescription>
                       Please enter the prompt
