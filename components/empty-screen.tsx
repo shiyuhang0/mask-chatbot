@@ -81,7 +81,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
               </SelectContent>
             </Select>
           </div>
-          <div className="items-start justify-self-start space-x-1">
+          <div className="items-center justify-self-start space-x-2">
             <Popover>
               <PopoverTrigger>
                 <Button variant="outline">+</Button>
