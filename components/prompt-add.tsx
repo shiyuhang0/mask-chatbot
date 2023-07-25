@@ -39,7 +39,7 @@ export function PromptAdd() {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
           <FormField
-              control={form.control}
+              // control={form.control}
               name="RoleName"
               render={({ field }) => (
                   <FormItem>
@@ -55,7 +55,7 @@ export function PromptAdd() {
               )}
           />
           <FormField
-              control={form.control}
+              // control={form.control}
               name="Prompt"
               render={({ field }) => (
                   <FormItem>
