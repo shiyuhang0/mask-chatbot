@@ -46,7 +46,15 @@ export default async function ChatPage({ params }: ChatPageProps) {
     notFound()
   }
 
+  const id1 = chat?.userId
+  const id2 = session?.user?.id
+  console.log(id1)
+  console.log(id2)
+  console.log(typeof id1)
+  console.log(typeof id2)
+
   if (chat?.userId !== session?.user?.id) {
+    console.log("not found")
     notFound()
   }
 
