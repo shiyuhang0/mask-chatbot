@@ -57,10 +57,11 @@ export async function getChat(id: string, userId: string) {
   const data = await res.json()
   const rows: ChatRows = JSON.parse(JSON.stringify(data))
   const result : Chat[] = rows.rows
-  console.log(result)
   if (result.length === 0) {
+    console.log("getChat failed for length 0")
     return null
   }
+  console.log(result)
   return result[0] as Chat
 
   // const chat = await kv.hgetall<Chat>(`chat:${id}`)

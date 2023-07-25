@@ -38,6 +38,9 @@ export default async function ChatPage({ params }: ChatPageProps) {
   const chat = await getChat(params.id, session.user.id)
   const prompts = JSON.stringify(await GetPrompts())
 
+  console.log("get chat")
+  console.log(chat)
+
 
   if (!chat) {
     notFound()
