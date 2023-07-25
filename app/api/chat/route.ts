@@ -53,9 +53,10 @@ export async function POST(req: Request) {
           }
         ]
       }
-      const useTiDB = process.env.USE_TIDB === 'true'
-      if (useTiDB){
-        console.log("start save to db")
+      const useKV = process.env.USE_KV === 'true'
+      if (!useKV){
+        console.log("start save to db with payload")
+        console.log(payload)
         await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
           method: 'POST',
           body: JSON.stringify(payload)
