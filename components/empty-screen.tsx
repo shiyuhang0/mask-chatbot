@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 
 const exampleMessages = [
   {
@@ -61,25 +62,27 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
           You can select a role and we will generate the best prompt for you:
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
-          <Select onValueChange={(value) => setInput(value)}>
-            <SelectTrigger className="w-[300px]">
-              <SelectValue placeholder="Act as"/>
-            </SelectTrigger>
-            <SelectContent hideWhenDetached={true}>
-              <SelectGroup>
-                <SelectLabel>Act as</SelectLabel>
-                {myPrompts.map((item, index) => (
-                    <SelectItem key={index} value={item.prompt}>
-                      {item.act}
-                    </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {/*<React.Suspense fallback={<div className="flex-1 overflow-auto" />}>*/}
-          {/*   /!*@ts-ignore *!/*/}
-          {/*  <SelectPrompt setInput={setInput}/>*/}
-          {/*</React.Suspense>*/}
+          <div className="mt-4 flex flex-col items-start space-y-2">
+            <Select onValueChange={(value) => setInput(value)}>
+              <SelectTrigger className="w-[300px]">
+                <SelectValue placeholder="Act as"/>
+              </SelectTrigger>
+              <SelectContent hideWhenDetached={true}>
+                <SelectGroup>
+                  <SelectLabel>Act as</SelectLabel>
+                  {myPrompts.map((item, index) => (
+                      <SelectItem key={index} value={item.prompt}>
+                        {item.act}
+                      </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <Popover>
+            <PopoverTrigger>Open</PopoverTrigger>
+            <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
         </div>
       </div>
     </div>
