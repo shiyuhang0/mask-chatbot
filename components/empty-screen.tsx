@@ -62,7 +62,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
           You can select a role and we will generate the best prompt for you:
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
-          <div className="mt-4 flex flex-col items-start space-y-2">
+          <div className="w-2/3 bg-gray-300 px-6 py-4">
             <Select onValueChange={(value) => setInput(value)}>
               <SelectTrigger className="w-[300px]">
                 <SelectValue placeholder="Act as"/>
@@ -79,10 +79,12 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
               </SelectContent>
             </Select>
           </div>
-          <Popover>
-            <PopoverTrigger>Open</PopoverTrigger>
-            <PopoverContent>Place content for the popover here.</PopoverContent>
-          </Popover>
+          <div className="w-1/3 bg-gray-200 p-4">
+            <Popover>
+              <PopoverTrigger>Open</PopoverTrigger>
+              <PopoverContent>Place content for the popover here.</PopoverContent>
+            </Popover>
+          </div>
         </div>
       </div>
     </div>
