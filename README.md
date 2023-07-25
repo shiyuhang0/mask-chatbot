@@ -1,73 +1,60 @@
-<a href="https://chat.vercel.ai/">
-  <img alt="Next.js 13 and app template Router-ready AI chatbot." src="https://chat.vercel.ai/opengraph-image.png">
-  <h1 align="center">Next.js AI Chatbot</h1>
-</a>
+# AI Chatbot - Make everyone a prompt engineer
 
-<p align="center">
-  An open-source AI chatbot app template built with Next.js, the Vercel AI SDK, OpenAI, and Vercel KV.
-</p>
+This is an open source AI Chatbot with [awesome prompts](https://github.com/f/awesome-chatgpt-prompts) powered by [TiDB Serverless](https://tidbcloud.com/).
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#model-providers"><strong>Model Providers</strong></a> ·
-  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
-  <a href="#running-locally"><strong>Running locally</strong></a> ·
-  <a href="#authors"><strong>Authors</strong></a>
-</p>
-<br/>
+> This project is built based on [ai-chatbot](https://github.com/vercel-labs/ai-chatbot). Thanks for the great work!
 
 ## Features
 
-- [Next.js](https://nextjs.org) App Router
-- React Server Components (RSCs), Suspense, and Server Actions
-- [Vercel AI SDK](https://sdk.vercel.ai/docs) for streaming chat UI
-- Support for OpenAI (default), Anthropic, Hugging Face, or custom AI chat models and/or LangChain
-- Edge runtime-ready
-- [shadcn/ui](https://ui.shadcn.com)
-  - Styling with [Tailwind CSS](https://tailwindcss.com)
-  - [Radix UI](https://radix-ui.com) for headless component primitives
-  - Icons from [Phosphor Icons](https://phosphoricons.com)
-- Chat History, rate limiting, and session storage with [Vercel KV](https://vercel.com/storage/kv)
-- [NextAuth.js](https://github.com/nextauthjs/next-auth) for authentication
+- Awesome prompts for you to chat with AI.
+- Share your chat powered by TiDB Serverless.
+- Isolated chat (and the chat history) from different users.
 
-## Model Providers
+## How it works
 
-This template ships with OpenAI `gpt-3.5-turbo` as the default. However, thanks to the [Vercel AI SDK](https://sdk.vercel.ai/docs), you can switch LLM providers to [Anthropic](https://anthropic.com), [Hugging Face](https://huggingface.co), or using [LangChain](https://js.langchain.com) with just a few lines of code.
+### Auth
+
+Use GitHub OAuth App and [next-auth](https://github.com/nextauthjs/next-auth) GitHub provider to authenticate users. 
+
+### Chat & Prompts
+
+The chat is powered by ChatGPT. [Vercel AI SDK](https://sdk.vercel.ai/docs) is used for streaming chat UI.
+
+The prompts come from [awesome prompts](https://github.com/f/awesome-chatgpt-prompts).
+
+### Storage
+
+Chat history, prompts and userID are stored in a TiDB Serverless. This provides:
+
+- Share your chat with others and the chat history will be kept forever.
+- Isolated chat from different users.
+- Prompts management
+
+### Deployment
+
+The project can be deployed on Vercel.
 
 ## Deploy Your Own
 
-You can deploy your own version of the Next.js AI Chatbot to Vercel with one click:
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fshiyuhang0%2Fai-chat&env=OPENAI_API_KEY,AUTH_SECRET,AUTH_GITHUB_ID,AUTH_GITHUB_SECRET&envDescription=How%20to%20get%20these%20env%20vars&envLink=https%3A%2F%2Fgithub.com%2Fshiyuhang0%2Fai-chat%2Fblob%2Fmain%2F.env.example&integration-ids=oac_coKBVWCXNjJnCEth1zzKoF1j&skippable-integrations=1)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js+Chat&demo-description=A+full-featured%2C+hackable+Next.js+AI+chatbot+built+by+Vercel+Labs&demo-url=https%3A%2F%2Fchat.vercel.ai%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4aVPvWuTmBvzM5cEdRdqeW%2F4234f9baf160f68ffb385a43c3527645%2FCleanShot_2023-06-16_at_17.09.21.png&project-name=Next.js+Chat&repository-name=nextjs-chat&repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fai-chatbot&from=templates&skippable-integrations=1&env=OPENAI_API_KEY%2CAUTH_GITHUB_ID%2CAUTH_GITHUB_SECRET%2CAUTH_SECRET&envDescription=How+to+get+these+env+vars&envLink=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fai-chatbot%2Fblob%2Fmain%2F.env.example&teamCreateStatus=hidden&stores=[{"type":"kv"}])
+### Environment Variables
 
-## Creating a KV Database Instance
+Here are the environment variables you need to set:
 
-Follow the steps outlined in the [quick start guide](https://vercel.com/docs/storage/vercel-kv/quickstart#create-a-kv-database) provided by Vercel. This guide will assist you in creating and configuring your KV database instance on Vercel, enabling your application to interact with it.
+- AUTH_SECRET: Generate a random secret: https://generate-secret.vercel.app/32 or `openssl rand -base64 32`
+- AUTH_GITHUB_ID: Create a GitHub OAuth app here: https://github.com/settings/applications/new
+- AUTH_GITHUB_SECRET: Authorization callback URL: https://authjs.dev/reference/core/providers_github#callback-url
+- OPENAI_API_KEY: The OpenAI API key
 
-Remember to update your environment variables (`KV_URL`, `KV_REST_API_URL`, `KV_REST_API_TOKEN`, `KV_REST_API_READ_ONLY_TOKEN`) in the `.env` file with the appropriate credentials provided during the KV database setup.
+If you skip the Vercel TiDB integration, you need add the following environment variables by yourself:
+
+- TIDB_HOST: The host of your TiDB Serverless
+- TIDB_USER: The user of your TiDB Serverless
+- TIDB_PASSWORD: The password of your TiDB Serverless
 
 
-## Running locally
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js AI Chatbot. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
 
-> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various OpenAI and authentication provider accounts.
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
-3. Download your environment variables: `vercel env pull`
 
-```bash
-pnpm install
-pnpm dev
-```
-
-Your app template should now be running on [localhost:3000](http://localhost:3000/).
-
-## Authors
-
-This library is created by [Vercel](https://vercel.com) and [Next.js](https://nextjs.org) team members, with contributions from:
-
-- Jared Palmer ([@jaredpalmer](https://twitter.com/jaredpalmer)) - [Vercel](https://vercel.com)
-- Shu Ding ([@shuding\_](https://twitter.com/shuding_)) - [Vercel](https://vercel.com)
-- shadcn ([@shadcn](https://twitter.com/shadcn)) - [Contractor](https://shadcn.com)
