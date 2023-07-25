@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Button} from "@/components/ui/button";
+import {PromptAdd} from "@/components/prompt-add";
 
 const exampleMessages = [
   {
@@ -80,12 +81,16 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
               </SelectContent>
             </Select>
           </div>
-          <div className="w-1/3">
+          <div className="w-1/3 items-start">
             <Popover>
               <PopoverTrigger>
-                <Button variant="outline">New prompt</Button>
+                <Button variant="outline">+</Button>
               </PopoverTrigger>
-              <PopoverContent>Place content for the popover here.</PopoverContent>
+              <PopoverContent>
+                <div className="flex flex-col space-y-2">
+                  <PromptAdd />
+                </div>
+              </PopoverContent>
             </Popover>
           </div>
         </div>
