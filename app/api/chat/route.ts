@@ -55,8 +55,7 @@ export async function POST(req: Request) {
       }
       const useKV = process.env.USE_KV === 'true'
       if (!useKV){
-        console.log("start save to db with payload")
-        console.log(payload)
+        console.log("start save to db")
         await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
           method: 'POST',
           body: JSON.stringify(payload)

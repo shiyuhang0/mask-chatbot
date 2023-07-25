@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
   });
 
   const payload = await request.json()
-  console.log(payload)
 
   if (payload === null) {
     return NextResponse.json({ success: false })
@@ -30,10 +29,10 @@ export async function POST(request: NextRequest) {
   const path = payload.path
   const messages = JSON.stringify(payload.messages)
 
-  console.log(payload.messages)
+  console.log("save to chat")
   console.log(messages)
 
-  await connection.execute('INSERT INTO `chats` (id, title, userId, createdAt, path, messages) VALUES (?, ?, ?, ?, ?, ?)', [id, title, userId, createdAt, path, messages]);
+  await connection.execute('INSERT INTO `chats` (id, title, userId, createdAt, path, messages) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE messages = ?', [id, title, userId, createdAt, path, messages,messages]);
 
   return NextResponse.json({ success: true })
 }
