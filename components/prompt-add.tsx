@@ -52,11 +52,19 @@ export function PromptAdd() {
                     <FormDescription>
                       Please enter the role name
                     </FormDescription>
-                    {/*<FormMessage />*/}
+                    <FormMessage />
+                  </FormItem>
+              )}
+          />
+          <FormField
+              control={form.control}
+              name="Prompt"
+              render={({ field }) => (
+                  <FormItem>
                     <FormLabel>Prompt</FormLabel>
-                      <FormControl>
-                      <Input placeholder="the Prompt" {...field} />
-                      </FormControl>
+                    <FormControl>
+                      <Input placeholder="the prompt name" {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
               )}
