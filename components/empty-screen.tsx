@@ -11,6 +11,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
+import {Button} from "@/components/ui/button";
 
 const exampleMessages = [
   {
@@ -62,7 +63,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
           You can select a role and we will generate the best prompt for you:
         </p>
         <div className="mt-4 flex flex-row items-start space-x-2">
-          <div className="w-2/3 px-6 py-4">
+          <div className="w-2/3">
             <Select onValueChange={(value) => setInput(value)}>
               <SelectTrigger className="w-[300px]">
                 <SelectValue placeholder="Act as"/>
@@ -79,9 +80,11 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
               </SelectContent>
             </Select>
           </div>
-          <div className="w-1/3 p-4">
+          <div className="w-1/3">
             <Popover>
-              <PopoverTrigger>Open</PopoverTrigger>
+              <PopoverTrigger>
+                <Button variant="outline">New prompt</Button>
+              </PopoverTrigger>
               <PopoverContent>Place content for the popover here.</PopoverContent>
             </Popover>
           </div>
