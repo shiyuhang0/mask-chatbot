@@ -3,6 +3,10 @@
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
+import multiavatar from '@multiavatar/multiavatar/esm'
+
+let svgCode = multiavatar('Binx Bond')
+
 
 function IconNextChat({
   className,
