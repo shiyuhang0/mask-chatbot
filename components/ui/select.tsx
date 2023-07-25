@@ -10,6 +10,12 @@ import {
   IconChevronUpDown
 } from '@/components/ui/icons'
 
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@radix-ui/react-icons';
+
 const Select = SelectPrimitive.Root
 
 const SelectGroup = SelectPrimitive.Group
@@ -48,9 +54,10 @@ const SelectContent = React.forwardRef<
         position === 'popper' && 'translate-y-1',
         className
       )}
-      position={position}
+      position={'popper'}
       {...props}
     >
+      <SelectPrimitive.ScrollUpButton/>
       <SelectPrimitive.Viewport
         className={cn(
           'p-1',
@@ -60,6 +67,7 @@ const SelectContent = React.forwardRef<
       >
         {children}
       </SelectPrimitive.Viewport>
+      <SelectPrimitive.ScrollDownButton/>
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
 ))

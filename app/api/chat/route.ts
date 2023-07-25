@@ -5,8 +5,6 @@ import { Configuration, OpenAIApi } from 'openai-edge'
 import { auth } from '@/auth'
 import { nanoid } from '@/lib/utils'
 
-export const runtime = 'edge'
-
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
 })
@@ -55,11 +53,20 @@ export async function POST(req: Request) {
           }
         ]
       }
-      await kv.hmset(`chat:${id}`, payload)
-      await kv.zadd(`user:chat:${userId}`, {
-        score: createdAt,
-        member: `chat:${id}`
-      })
+      const useKV = process.env.USE_KV === 'true'
+      if (!useKV){
+        console.log("start save to db")
+        await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
+          method: 'POST',
+          body: JSON.stringify(payload)
+        })
+      }else{
+        await kv.hmset(`chat:${id}`, payload)
+        await kv.zadd(`user:chat:${userId}`, {
+          score: createdAt,
+          member: `chat:${id}`
+        })
+      }
     }
   })
 
