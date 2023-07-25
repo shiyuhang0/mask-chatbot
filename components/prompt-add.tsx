@@ -22,14 +22,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { toast } from "@/components/ui/use-toast"
+import {redirect} from "next/navigation";
+import {Input} from "@/components/ui/input";
 
 const FormSchema = z.object({
-  email: z
+  RoleName: z
   .string({
-    required_error: "Please select an email to display.",
+    required_error: "Please enter role name.",
+  }),
+  Prompt: z.string({
+    required_error: "Please enter prompt.",
   })
-  .email(),
 })
 
 export function PromptAdd() {
@@ -38,14 +41,8 @@ export function PromptAdd() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+     console.log(data)
+     redirect('/')
   }
 
   return (
@@ -53,25 +50,23 @@ export function PromptAdd() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
           <FormField
               control={form.control}
-              name="email"
+              name="RoleName"
               render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormLabel>RoleName</FormLabel>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a verified email to display" />
-                        </SelectTrigger>
+                        <Input placeholder="Enter the role name" {...field} />
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value="m@example.com">m@example.com</SelectItem>
-                        <SelectItem value="m@google.com">m@google.com</SelectItem>
-                        <SelectItem value="m@support.com">m@support.com</SelectItem>
-                      </SelectContent>
-                    </Select>
                     <FormDescription>
-                      You can manage email addresses in your{" "}
-                      <Link href="/examples/forms">email settings</Link>.
+                      Please enter the role name
+                    </FormDescription>
+                    <FormMessage />
+                    <FormLabel>Prompt</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter the prompt" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      Please enter the prompt
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
