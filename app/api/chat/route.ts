@@ -53,18 +53,20 @@ export async function POST(req: Request) {
           }
         ]
       }
-
-      await kv.hmset(`chat:${id}`, payload)
-      await kv.zadd(`user:chat:${userId}`, {
-        score: createdAt,
-        member: `chat:${id}`
-      })
-
-      console.log("start save to db")
-      await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
-        method: 'POST',
-        body: JSON.stringify(payload)
-      })
+      const useTiDB = process.env.USE_TIDB === 'true'
+      if (useTiDB){
+        console.log("start save to db")
+        await fetch(`https://${process.env.VERCEL_URL}/api/chats`,{
+          method: 'POST',
+          body: JSON.stringify(payload)
+        })
+      }else{
+        await kv.hmset(`chat:${id}`, payload)
+        await kv.zadd(`user:chat:${userId}`, {
+          score: createdAt,
+          member: `chat:${id}`
+        })
+      }
     }
   })
 
