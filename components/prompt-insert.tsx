@@ -32,13 +32,13 @@ export function InsertPrompt() {
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-2 items-center gap-4">
+            <div className="grid grid-cols-4 items-center gap-2">
               <Label htmlFor="act" className="text-right">
                 Name
               </Label>
               <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-3" />
             </div>
-            <div className="grid grid-cols-6 items-center gap-4">
+            <div className="grid grid-cols-4 items-center gap-6">
               <Label htmlFor="prompt" className="text-right">
                 Username
               </Label>

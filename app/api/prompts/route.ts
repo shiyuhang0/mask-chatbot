@@ -42,7 +42,7 @@ export async function POST(request: Request) {
   const act = payload.act
   const prompt = payload.prompt
 
-  await connection.execute('INSERT INTO `prompts` values (?,?)',[act,prompt]);
+  await connection.execute('INSERT INTO `prompts` (act,prompt) values (?,?)',[act,prompt]);
 
   return NextResponse.json({ success: true })
 }
