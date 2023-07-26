@@ -12,10 +12,12 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {redirect} from "next/navigation";
 import {useState} from "react";
+import {GetPrompts} from "@/app/actions";
 
 async function add(input) {
   console.log('input')
   console.log('add')
+  await GetPrompts()
   redirect('/')
 }
 
@@ -48,7 +50,7 @@ export function DialogDemo() {
             </div>
           </div>
           <DialogFooter>
-            <Button type="outline" onClick={async () => add(input)}>
+            <Button type="submit" onClick={async () => add(input)}>
               Save changes</Button>
           </DialogFooter>
         </DialogContent>
