@@ -74,7 +74,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-fit justify-center"
+                    className="w-fit justify-self-center justify-center"
                 >
                   {value
                       ? value
