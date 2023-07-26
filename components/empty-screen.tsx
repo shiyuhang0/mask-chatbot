@@ -1,15 +1,6 @@
 import {UseChatHelpers} from 'ai/react'
 
 import * as React from 'react'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {Button} from "@/components/ui/button";
@@ -22,7 +13,6 @@ import {
   CommandItem
 } from "@/components/ui/command";
 import {cn} from "@/lib/utils";
-import {InsertPrompt} from "@/components/prompt-insert";
 
 const exampleMessages = [
   {
@@ -96,9 +86,6 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                   <CommandInput placeholder="Search ..."/>
                   <CommandEmpty>No framework found.</CommandEmpty>
                   <ScrollArea className='h-screen max-h-[60vh] overflow-auto'>
-                    <div className="items-center self-center space-x-6 pl-4">
-                      <InsertPrompt />
-                    </div>
                     <CommandGroup>
                       {myPrompts.map((prompt) => (
                           <CommandItem

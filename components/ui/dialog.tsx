@@ -128,7 +128,6 @@ const DialogClose = React.forwardRef<
 ))
 DialogClose.displayName = DialogPrimitive.Title.displayName
 
-
 export {
   Dialog,
   DialogTrigger,
