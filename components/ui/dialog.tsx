@@ -122,12 +122,16 @@ const DialogClose = React.forwardRef<
     React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>
     >(({ className, ...props }, ref) => (
     <DialogPrimitive.Close
+        id="closeDialog"
         ref={ref}
         {...props}
     />
 ))
 DialogClose.displayName = DialogPrimitive.Title.displayName
 
+export const dialogClose = () => {
+  document.getElementById('closeDialog')?.click();
+};
 
 export {
   Dialog,

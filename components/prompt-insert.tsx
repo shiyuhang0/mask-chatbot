@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import {
-  Dialog, DialogClose,
+  Dialog, dialogClose, DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -32,6 +32,7 @@ export function InsertPrompt() {
             <DialogTitle>Add Prompt</DialogTitle>
             <DialogDescription>
               <p className="leading-normal text-muted-foreground">
+
                 Customize your prompt and click save to store them.
               </p>
             </DialogDescription>
@@ -53,11 +54,11 @@ export function InsertPrompt() {
           <DialogFooter>
               <Button type="submit" onClick={async () => {
                 await AddPrompt(act, prompt)
+                dialogClose()
                 router.refresh()
                 router.push('/')
               }}>
                 Save </Button>
-            <DialogClose/>
           </DialogFooter>
         </DialogContent>
       </Dialog>
