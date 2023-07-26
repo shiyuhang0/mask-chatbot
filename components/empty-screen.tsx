@@ -67,14 +67,14 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           <p className="leading-normal text-muted-foreground">
             You can select a role and we will generate the best prompt for you:
           </p>
-          <div className="mt-4 flex flex-col items-start space-y-2 justify-items-center">
+          <div className="mt-4 flex flex-col items-start space-y-2">
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <Button
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-fit justify-between"
+                    className="w-fit justify-between justify-items-center"
                 >
                   {value
                       ? value
@@ -87,9 +87,6 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                   <CommandInput placeholder="Search ..."/>
                   <CommandEmpty>No framework found.</CommandEmpty>
                   <ScrollArea className='h-screen max-h-[60vh] overflow-auto'>
-                    <div className="items-center self-center space-x-6 pl-4">
-                      <InsertPrompt />
-                    </div>
                     <CommandGroup>
                       {myPrompts.map((prompt) => (
                           <CommandItem
