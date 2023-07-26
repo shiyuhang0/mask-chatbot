@@ -12,16 +12,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {redirect} from "next/navigation";
 import {useState} from "react";
-import {GetPrompts} from "@/app/actions";
+import {AddPrompts} from "@/app/actions";
 
-async function add(input) {
-  console.log('input')
-  console.log('add')
-  await GetPrompts()
+async function add(act,prompt) {
+  await AddPrompts(act,prompt)
   redirect('/')
 }
 
-export function DialogDemo() {
+export function Ad() {
   const [act, setAct] = useState('');
   const [prompt, setPrompt] = useState('');
 
@@ -34,25 +32,25 @@ export function DialogDemo() {
           <DialogHeader>
             <DialogTitle>Add Prompt</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when done.
+              Add prompt here. Click save when done.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
+            <div className="grid grid-cols-2 items-center gap-4">
+              <Label htmlFor="act" className="text-right">
                 Name
               </Label>
               <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-3" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
+            <div className="grid grid-cols-6 items-center gap-4">
+              <Label htmlFor="prompt" className="text-right">
                 Username
               </Label>
               <Input id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-3" />
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={async () => add(prompt)}>
+            <Button type="submit" onClick={async () => await add(act, prompt)}>
               Save changes</Button>
           </DialogFooter>
         </DialogContent>
