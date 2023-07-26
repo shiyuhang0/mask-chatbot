@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import {
-  Dialog,
+  Dialog, DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -32,26 +32,28 @@ export function InsertPrompt() {
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-2">
+            <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="act" className="text-right">
-                Name
+                Act
               </Label>
-              <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-3" />
+              <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-2" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-6">
+            <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="prompt" className="text-right">
-                Username
+                Prompt
               </Label>
-              <Input id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-3" />
+              <Input id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-5" />
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={async () => {
-              await AddPrompt(act, prompt)
-              router.refresh()
-              router.push('/')
-            }}>
-              Save </Button>
+            <DialogClose asChild>
+              <Button type="submit" onClick={async () => {
+                await AddPrompt(act, prompt)
+                router.refresh()
+                router.push('/')
+              }}>
+                Save </Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>
