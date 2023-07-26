@@ -22,7 +22,9 @@ async function add(input) {
 }
 
 export function DialogDemo() {
-  const [input, setInput] = useState('');
+  const [act, setAct] = useState('');
+  const [prompt, setPrompt] = useState('');
+
   return (
       <Dialog>
         <DialogTrigger asChild>
@@ -40,17 +42,17 @@ export function DialogDemo() {
               <Label htmlFor="name" className="text-right">
                 Name
               </Label>
-              <Input id="act" className="col-span-3" />
+              <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-3" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="username" className="text-right">
                 Username
               </Label>
-              <Input id="prompt" onChange={e => setInput(e.target.value)} className="col-span-3" />
+              <Input id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-3" />
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={async () => add(input)}>
+            <Button type="submit" onClick={async () => add(prompt)}>
               Save changes</Button>
           </DialogFooter>
         </DialogContent>
