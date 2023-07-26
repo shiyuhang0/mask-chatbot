@@ -31,17 +31,17 @@ export function InsertPrompt() {
           <DialogHeader>
             <DialogTitle>Add Prompt</DialogTitle>
             <DialogDescription>
-              Add prompt here. Click save when done.
+              Customize your prompt and click save to store them.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
+            <div className="grid grid-cols-4 items-center gap-4 justify-center">
               <Label htmlFor="act" className="text-right">
                 Act
               </Label>
-              <Input id="act" multiple={true} size={3} onChange={e => setAct(e.target.value)} className="col-span-3" />
+              <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-3" />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
+            <div className="grid grid-cols-4 items-center gap-4 justify-center">
               <Label htmlFor="prompt" className="text-right">
                 Prompt
               </Label>
