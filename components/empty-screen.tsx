@@ -79,7 +79,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
               </SelectContent>
             </Select>
           </div>
-          <div className="items-center self-center space-x-6">
+          <div className="items-center self-center space-x-6 pl-4">
             <InsertPrompt />
           </div>
         </div>
