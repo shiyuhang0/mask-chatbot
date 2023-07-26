@@ -83,7 +83,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[300px] justify-between"
+                    className="w-fit justify-between"
                 >
                   {value
                       ? value
@@ -91,11 +91,14 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0">
-                <Command>
+              <PopoverContent className="w-[250px] p-0">
+                <Command className="w-[250px]">
                   <CommandInput placeholder="Search ..."/>
                   <CommandEmpty>No framework found.</CommandEmpty>
                   <ScrollArea className='h-screen max-h-[60vh] overflow-auto'>
+                    <div className="items-center self-center space-x-6 pl-4">
+                      <InsertPrompt />
+                    </div>
                     <CommandGroup>
                       {myPrompts.map((prompt) => (
                           <CommandItem
@@ -121,28 +124,6 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                 </Command>
               </PopoverContent>
             </Popover>
-            {/*<Select onValueChange={(value) => setInput(value)}>*/}
-            {/*  <SelectTrigger className="w-[300px]">*/}
-            {/*    <SelectValue placeholder="Act as"/>*/}
-            {/*  </SelectTrigger>*/}
-            {/*  <SelectContent hideWhenDetached={true}>*/}
-            {/*    <SelectGroup>*/}
-            {/*      <SelectLabel>Act as</SelectLabel>*/}
-            {/*      {myPrompts.map((item, index) => (*/}
-            {/*          <SelectItem key={index} value={item.prompt}>*/}
-            {/*            {item.act}*/}
-            {/*          </SelectItem>*/}
-            {/*      ))}*/}
-            {/*    </SelectGroup>*/}
-            {/*  </SelectContent>*/}
-            {/*</Select>*/}
-            {/*<React.Suspense fallback={<div className="flex-1 overflow-auto" />}>*/}
-            {/*   /!*@ts-ignore *!/*/}
-            {/*  <SelectPrompt setInput={setInput}/>*/}
-            {/*</React.Suspense>*/}
-          </div>
-          <div className="items-center self-center space-x-6 pl-4">
-            <InsertPrompt />
           </div>
         </div>
       </div>
