@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import {useState} from "react";
 import {AddPrompt} from "@/app/actions";
 import {useRouter} from "next/navigation";
+import {Textarea} from "@/components/ui/textarea";
 
 export function InsertPrompt() {
   const [act, setAct] = useState('');
@@ -44,7 +45,7 @@ export function InsertPrompt() {
               <Label htmlFor="prompt" className="text-right">
                 Prompt
               </Label>
-              <Input id="prompt" multiple="true" size="3" onChange={e => setPrompt(e.target.value)} className="col-span-3 h-32" />
+              <Textarea id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-3" />
             </div>
           </div>
           <DialogFooter>
