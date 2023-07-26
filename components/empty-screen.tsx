@@ -13,7 +13,6 @@ import {
   CommandItem
 } from "@/components/ui/command";
 import {cn} from "@/lib/utils";
-import {InsertPrompt} from "@/components/prompt-insert";
 
 const exampleMessages = [
   {
@@ -67,14 +66,14 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           <p className="leading-normal text-muted-foreground">
             You can select a role and we will generate the best prompt for you:
           </p>
-          <div className="mt-4 flex flex-col items-start space-y-2 justify-center">
+          <div className="mt-4 flex flex-col items-start space-y-2">
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <Button
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-fit justify-self-center justify-center"
+                    className="w-fit justify-between"
                 >
                   {value
                       ? value

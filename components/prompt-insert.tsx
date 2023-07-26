@@ -21,9 +21,10 @@ export function InsertPrompt() {
   const [act, setAct] = useState('');
   const [prompt, setPrompt] = useState('');
   const router = useRouter()
+  const [open, setOpen] = useState(false)
 
   return (
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button variant="outline">Add Prompt</Button>
         </DialogTrigger>
@@ -52,8 +53,8 @@ export function InsertPrompt() {
           </div>
           <DialogFooter>
               <Button type="submit" onClick={async () => {
-                dialogClose()
                 await AddPrompt(act, prompt)
+                setOpen(false)
                 router.refresh()
                 router.push('/')
               }}>
