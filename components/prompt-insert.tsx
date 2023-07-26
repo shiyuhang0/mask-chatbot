@@ -50,7 +50,7 @@ export function InsertPrompt() {
               <Button type="submit" onClick={async () => {
                 await AddPrompt(act, prompt)
                 // router.refresh()
-                // router.push('/')
+                router.push('/')
               }}>
                 Save </Button>
             </DialogClose>
