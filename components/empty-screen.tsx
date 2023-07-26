@@ -1,15 +1,6 @@
 import {UseChatHelpers} from 'ai/react'
 
 import * as React from 'react'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {Button} from "@/components/ui/button";
@@ -76,7 +67,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           <p className="leading-normal text-muted-foreground">
             You can select a role and we will generate the best prompt for you:
           </p>
-          <div className="mt-4 flex flex-col items-start space-y-2">
+          <div className="mt-4 flex flex-col items-start space-y-2 justify-items-center">
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <Button
