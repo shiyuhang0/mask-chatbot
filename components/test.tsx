@@ -11,13 +11,16 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {redirect} from "next/navigation";
+import {useState} from "react";
 
-async function add() {
+async function add(input) {
+  console.log('input')
   console.log('add')
   redirect('/')
 }
 
 export function DialogDemo() {
+  const [input, setInput] = useState('');
   return (
       <Dialog>
         <DialogTrigger asChild>
@@ -41,11 +44,11 @@ export function DialogDemo() {
               <Label htmlFor="username" className="text-right">
                 Username
               </Label>
-              <Input id="prompt" className="col-span-3" />
+              <Input id="prompt" onChange={e => setInput(e.target.value)} className="col-span-3" />
             </div>
           </div>
           <DialogFooter>
-            <Button type="outline" onClick={() => add()}>
+            <Button type="outline" onClick={async () => add(input)}>
               Save changes</Button>
           </DialogFooter>
         </DialogContent>
