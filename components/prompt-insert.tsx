@@ -16,6 +16,7 @@ import {useState} from "react";
 import {AddPrompt} from "@/app/actions";
 import {useRouter} from "next/navigation";
 import {Textarea} from "@/components/ui/textarea";
+import * as React from "react/index";
 
 export function InsertPrompt() {
   const [act, setAct] = useState('');
@@ -31,7 +32,9 @@ export function InsertPrompt() {
           <DialogHeader>
             <DialogTitle>Add Prompt</DialogTitle>
             <DialogDescription>
-              <p className="whitespace-normal">Customize your prompt and click save to store them.</p>
+              <p className="leading-normal text-muted-foreground">
+                Customize your prompt and click save to store them.
+              </p>
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -49,14 +52,13 @@ export function InsertPrompt() {
             </div>
           </div>
           <DialogFooter>
-            <DialogClose asChild>
               <Button type="submit" onClick={async () => {
                 await AddPrompt(act, prompt)
                 router.refresh()
                 router.push('/')
               }}>
                 Save </Button>
-            </DialogClose>
+            <DialogClose/>
           </DialogFooter>
         </DialogContent>
       </Dialog>
