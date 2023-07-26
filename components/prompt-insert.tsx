@@ -16,7 +16,6 @@ import {useState} from "react";
 import {AddPrompt} from "@/app/actions";
 import {useRouter} from "next/navigation";
 import {Textarea} from "@/components/ui/textarea";
-import * as React from "react/index";
 
 export function InsertPrompt() {
   const [act, setAct] = useState('');
