@@ -44,7 +44,7 @@ export function InsertPrompt() {
               <Label htmlFor="prompt" className="text-right">
                 Prompt
               </Label>
-              <Input id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-3 h-32" />
+              <Input id="prompt" multiple="true" size="3" onChange={e => setPrompt(e.target.value)} className="col-span-3 h-32" />
             </div>
           </div>
           <DialogFooter>
