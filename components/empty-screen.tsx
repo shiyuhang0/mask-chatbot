@@ -13,7 +13,7 @@ import {
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Button} from "@/components/ui/button";
 import {PromptAdd} from "@/components/prompt-add";
-import {DialogDemo} from "@/components/test";
+import {AddPrompt, DialogDemo} from "@/components/test";
 
 const exampleMessages = [
   {
@@ -82,7 +82,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
               </SelectContent>
             </Select>
           </div>
-          <div className="items-center self-center space-x-2">
+          <div className="items-center self-center space-x-4">
             {/*<Popover>*/}
             {/*  <PopoverTrigger>*/}
             {/*    <Button variant="outline">+</Button>*/}
@@ -93,7 +93,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
             {/*    </div>*/}
             {/*  </PopoverContent>*/}
             {/*</Popover>*/}
-            <DialogDemo />
+            <AddPrompt />
           </div>
         </div>
       </div>

@@ -12,14 +12,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {redirect} from "next/navigation";
 import {useState} from "react";
-import {AddPrompts} from "@/app/actions";
+import {AddPrompt} from "@/app/actions";
 
 async function add(act,prompt) {
-  await AddPrompts(act,prompt)
+  await AddPrompt(act,prompt)
   redirect('/')
 }
 
-export function Ad() {
+export function AddPrompt() {
   const [act, setAct] = useState('');
   const [prompt, setPrompt] = useState('');
 
