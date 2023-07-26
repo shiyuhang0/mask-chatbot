@@ -10,9 +10,6 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
-import {Button} from "@/components/ui/button";
-import {PromptAdd} from "@/components/prompt-add";
 import {InsertPrompt} from "@/components/prompt-insert";
 
 const exampleMessages = [
@@ -82,17 +79,7 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
               </SelectContent>
             </Select>
           </div>
-          <div className="items-center self-center space-x-4">
-            {/*<Popover>*/}
-            {/*  <PopoverTrigger>*/}
-            {/*    <Button variant="outline">+</Button>*/}
-            {/*  </PopoverTrigger>*/}
-            {/*  <PopoverContent>*/}
-            {/*    <div className="flex justify-self-end	">*/}
-            {/*      <PromptAdd />*/}
-            {/*    </div>*/}
-            {/*  </PopoverContent>*/}
-            {/*</Popover>*/}
+          <div className="items-center self-center space-x-6">
             <InsertPrompt />
           </div>
         </div>

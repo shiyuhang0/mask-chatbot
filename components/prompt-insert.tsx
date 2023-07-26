@@ -49,8 +49,8 @@ export function InsertPrompt() {
             <DialogClose asChild>
               <Button type="submit" onClick={async () => {
                 await AddPrompt(act, prompt)
-                router.refresh()
-                router.push('/')
+                // router.refresh()
+                // router.push('/')
               }}>
                 Save </Button>
             </DialogClose>
