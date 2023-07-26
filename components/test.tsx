@@ -10,18 +10,14 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {redirect} from "next/navigation";
 import {useState} from "react";
 import {AddPrompt} from "@/app/actions";
+import {useRouter} from "next/navigation";
 
-async function add(act,prompt) {
-  await AddPrompt(act,prompt)
-  redirect('/')
-}
-
-export function AddPrompt() {
+export function InsertPrompt() {
   const [act, setAct] = useState('');
   const [prompt, setPrompt] = useState('');
+  const router = useRouter()
 
   return (
       <Dialog>
@@ -50,8 +46,12 @@ export function AddPrompt() {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={async () => await add(act, prompt)}>
-              Save changes</Button>
+            <Button type="submit" onClick={async () => {
+              await AddPrompt(act, prompt)
+              router.refresh()
+              router.push('/')
+            }}>
+              Save </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
