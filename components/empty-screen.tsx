@@ -13,6 +13,7 @@ import {
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Button} from "@/components/ui/button";
 import {PromptAdd} from "@/components/prompt-add";
+import {DialogDemo} from "@/components/test";
 
 const exampleMessages = [
   {
@@ -82,16 +83,17 @@ export function EmptyScreen({ setInput,prompts }: EmptyScreenProps) {
             </Select>
           </div>
           <div className="items-center self-center space-x-2">
-            <Popover>
-              <PopoverTrigger>
-                <Button variant="outline">+</Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <div className="flex justify-self-end	">
-                  <PromptAdd />
-                </div>
-              </PopoverContent>
-            </Popover>
+            {/*<Popover>*/}
+            {/*  <PopoverTrigger>*/}
+            {/*    <Button variant="outline">+</Button>*/}
+            {/*  </PopoverTrigger>*/}
+            {/*  <PopoverContent>*/}
+            {/*    <div className="flex justify-self-end	">*/}
+            {/*      <PromptAdd />*/}
+            {/*    </div>*/}
+            {/*  </PopoverContent>*/}
+            {/*</Popover>*/}
+            <DialogDemo />
           </div>
         </div>
       </div>

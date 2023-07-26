@@ -1,51 +1,54 @@
-"use client"
-
-import Link from "next/link"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-
 import { Button } from "@/components/ui/button"
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {redirect} from "next/navigation";
 
-const formSchema = z.object({
-  usernaame: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
+async function add() {
+  console.log('add')
+  redirect('/')
+}
 
-export function ProfileForm() {
-  // ...
-
+export function DialogDemo() {
   return (
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder="shadcn" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This is your public display name.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-              )}
-          />
-          <Button type="submit">Submit</Button>
-        </form>
-      </Form>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Add Prompt</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Add Prompt</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Name
+              </Label>
+              <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="username" className="text-right">
+                Username
+              </Label>
+              <Input id="username" value="@peduarte" className="col-span-3" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button type="submit" onClick={() => add()}>
+              Save changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
   )
 }
