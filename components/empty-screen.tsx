@@ -13,7 +13,7 @@ import {
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Button} from "@/components/ui/button";
 import {PromptAdd} from "@/components/prompt-add";
-import {AddPrompt, DialogDemo, InsertPrompt} from "@/components/test";
+import {InsertPrompt} from "@/components/prompt-insert";
 
 const exampleMessages = [
   {
