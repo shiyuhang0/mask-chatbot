@@ -27,7 +27,7 @@ export function IconButton({
           className={cn(className)}
           {...props}
       >
-        <EmojiPicker className="mr-2" />
+        <EmojiPicker />
         {act}
       </Button>
   )
