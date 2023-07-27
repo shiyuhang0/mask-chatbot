@@ -17,7 +17,7 @@ import {AddPrompt} from "@/app/actions";
 import {useRouter} from "next/navigation";
 import {Textarea} from "@/components/ui/textarea";
 
-export function InsertPrompt(userId: string) {
+export function InsertPrompt({userId}: string) {
   const [act, setAct] = useState('');
   const [prompt, setPrompt] = useState('');
   const router = useRouter()
