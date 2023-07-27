@@ -18,7 +18,7 @@ export async function GetPrompts(userId: string) {
   return res.json()
 }
 
-export async function AddPrompt(act: string,prompt: string,userId: number) {
+export async function AddPrompt(act: string,prompt: string,userId: string) {
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`,{
     method: 'POST',
     body: JSON.stringify({act,prompt,userId}),
