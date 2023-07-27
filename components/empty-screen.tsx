@@ -49,7 +49,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
       <div className="mx-auto max-w-2xl px-4">
         <div className="rounded-lg border bg-background p-8">
           <h1 className="mb-2 text-lg font-semibold">
-            To be a prompt engineer!
+            Be a prompt engineer!
           </h1>
           <p className="mb-2 leading-normal text-muted-foreground">
             This AI chatbot app helps you become a qualified prompt engineer.
