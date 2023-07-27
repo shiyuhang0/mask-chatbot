@@ -13,7 +13,7 @@ import {
   CommandItem
 } from "@/components/ui/command";
 import {cn} from "@/lib/utils";
-import {IconGitHub} from "@/components/ui/icons";
+import {IconGitHub, IconSpinner} from "@/components/ui/icons";
 
 const examplePrompts: Prompts[] = [
   { act: "greeting", prompt: "Hello, how are you?" },
@@ -111,8 +111,9 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
             </Popover>
           </div>
           <div className="mt-4 flex flex-col items-start space-y-2">
+            <IconSpinner className="mr-2 animate-spin" />
             <IconGitHub/>
-            <span className="hidden ml-2 md:flex">GitHub</span>
+            GitHub
           </div>
         </div>
       </div>
