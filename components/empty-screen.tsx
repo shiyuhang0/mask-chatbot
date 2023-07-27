@@ -55,7 +55,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           <p className="leading-normal text-muted-foreground">
             You can select a role and we will generate the best prompt for you:
           </p>
-          <div className="mt-4 flex flex-col items-start space-y-2 justify-center" >
+          <div className="mt-4 flex space-y-2 justify-center" >
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <Button
