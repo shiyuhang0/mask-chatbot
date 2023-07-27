@@ -112,6 +112,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           </div>
           <div className="mt-4 flex flex-col items-start space-y-2">
             <IconGitHub/>
+            <span className="hidden ml-2 md:flex">GitHub</span>
           </div>
         </div>
       </div>
