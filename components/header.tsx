@@ -55,7 +55,7 @@ export async function Header() {
       </div>
       <div className="flex items-center justify-end space-x-2">
         <a>
-          <InsertPrompt userId={session?.user?.id}/>
+          <InsertPrompt/>
         </a>
         <a
           target="_blank"

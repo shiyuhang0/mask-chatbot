@@ -16,8 +16,10 @@ import {useState} from "react";
 import {AddPrompt} from "@/app/actions";
 import {useRouter} from "next/navigation";
 import {Textarea} from "@/components/ui/textarea";
+import {auth} from "@/auth";
 
-export function InsertPrompt({userId}: string) {
+export async function InsertPrompt() {
+  const session = await auth()
   const [act, setAct] = useState('');
   const [prompt, setPrompt] = useState('');
   const router = useRouter()
@@ -42,23 +44,23 @@ export function InsertPrompt({userId}: string) {
               <Label htmlFor="act" className="text-center">
                 Act
               </Label>
-              <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-3" />
+              <Input id="act" onChange={e => setAct(e.target.value)} className="col-span-3"/>
             </div>
             <div className="grid grid-cols-4 items-center gap-4 justify-center">
               <Label htmlFor="prompt" className="text-center">
                 Prompt
               </Label>
-              <Textarea id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-3" />
+              <Textarea id="prompt" onChange={e => setPrompt(e.target.value)} className="col-span-3"/>
             </div>
           </div>
           <DialogFooter>
-              <Button type="submit" onClick={async () => {
-                await AddPrompt(act, prompt, userId)
-                setOpen(false)
-                router.refresh()
-                router.push('/')
-              }}>
-                Save </Button>
+            <Button type="submit" onClick={async () => {
+              await AddPrompt(act, prompt, session.user.id)
+              setOpen(false)
+              router.refresh()
+              router.push('/')
+            }}>
+              Save </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
