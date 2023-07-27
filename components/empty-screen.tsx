@@ -24,12 +24,6 @@ const ExamplePrompts: Prompts[] = [
   { act: "github6", prompt: "Hey, how are you doing?" }
 ]
 
-export interface PromptProps
-    extends Pick<UseChatHelpers, 'input' | 'setInput'> {
-  onSubmit: (value: string) => Promise<void>
-  isLoading: boolean
-}
-
 export interface EmptyScreenProps extends Pick<UseChatHelpers, 'setInput'> {
   prompts: string
 }
@@ -110,7 +104,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           {/*<div className="mt-4 flex flex-col items-start space-y-2">*/}
           <div className="mt-4 grid grid-cols-3 gap-4">
             { ExamplePrompts.map((prompt,index) => (
-                < IconButton key={index} act={prompt.act} prompt={prompt.prompt} />
+                < IconButton key={index} act={prompt.act} prompt={prompt.prompt} setInput={setInput} />
             ))}
           </div>
         </div>
