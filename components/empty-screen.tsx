@@ -113,7 +113,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
             </Popover>
           </div>
           {/*<div className="mt-4 flex flex-col items-start space-y-2">*/}
-          <div className="mt-4 grid grid-cols-4 gap-4">
+          <div className="mt-4 grid grid-cols-3 gap-4">
             <IconButton act={'github'}/>
             <IconButton act={'github1'}/>
             <IconButton act={'github2'}/>
