@@ -13,20 +13,15 @@ import {
   CommandItem
 } from "@/components/ui/command";
 import {cn} from "@/lib/utils";
-import {IconGitHub, IconSpinner} from "@/components/ui/icons";
-import {signIn} from "next-auth/react";
 import {IconButton} from "@/components/icon-button";
 
-const examplePrompts: Prompts[] = [
-  { act: "greeting", prompt: "Hello, how are you?" },
-  { act: "greeting", prompt: "Hi, how are you?" },
-  { act: "greeting", prompt: "Hey, how are you?" },
-  { act: "greeting", prompt: "Hi, how are you doing?" },
-  { act: "greeting", prompt: "Hello, how are you doing?" },
-  { act: "greeting", prompt: "Hey, how are you doing?" },
-  { act: "greeting", prompt: "Hi, how are you feeling?" },
-  { act: "greeting", prompt: "Hello, how are you feeling?" },
-  { act: "greeting", prompt: "Hey, how are you feeling?" },
+const ExamplePrompts: Prompts[] = [
+  { act: "github1", prompt: "Hello, how are you?" },
+  { act: "github2", prompt: "Hi, how are you?" },
+  { act: "github3", prompt: "Hey, how are you?" },
+  { act: "github4", prompt: "Hi, how are you doing?" },
+  { act: "github5", prompt: "Hello, how are you doing?" },
+  { act: "github6", prompt: "Hey, how are you doing?" }
 ]
 
 export interface PromptProps
@@ -114,11 +109,9 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           </div>
           {/*<div className="mt-4 flex flex-col items-start space-y-2">*/}
           <div className="mt-4 grid grid-cols-3 gap-4">
-            <IconButton act={'github'}/>
-            <IconButton act={'github1'}/>
-            <IconButton act={'github2'}/>
-            <IconButton act={'github3'}/>
-            <IconButton act={'github4'}/>
+            { ExamplePrompts.map((prompt,index) => (
+                < IconButton key={index} act={prompt.act} prompt={prompt.prompt} />
+            ))}
           </div>
         </div>
       </div>

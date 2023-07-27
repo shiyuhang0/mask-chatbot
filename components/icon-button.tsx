@@ -1,26 +1,28 @@
 'use client'
 
 import * as React from 'react'
-import { signIn } from 'next-auth/react'
+import {UseChatHelpers} from 'ai/react'
 
 import { cn } from '@/lib/utils'
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { IconGitHub, IconSpinner } from '@/components/ui/icons'
 
-interface IconButtonProps extends ButtonProps {
-  act?: string
-  prompt?: string
+interface IconButtonProps extends ButtonProps, Pick<UseChatHelpers, 'setInput'> {
+  act: string
+  prompt: string
 }
 
 export function IconButton({
-                              act = 'Login with GitHub',
+                              act,
+                              prompt,
                               className,
+                              setInput,
                               ...props
                             }: IconButtonProps) {
   return (
       <Button
           variant="outline"
-          onClick={() => {}}
+          onClick={() => {setInput(prompt)}}
           className={cn(className)}
           {...props}
       >
