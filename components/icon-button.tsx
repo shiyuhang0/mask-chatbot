@@ -5,16 +5,20 @@ import {UseChatHelpers} from 'ai/react'
 
 import { cn } from '@/lib/utils'
 import { Button, type ButtonProps } from '@/components/ui/button'
-import EmojiPicker, {Emoji} from 'emoji-picker-react';
+import EmojiPicker, {Emoji,EmojiStyle} from 'emoji-picker-react';
 
 export function EmojiAvatar(props: { avatar: string; size?: number }) {
   return (
       <Emoji
           unified={props.avatar}
           size={props.size ?? 18}
-          // getEmojiUrl={getEmojiUrl}
+          getEmojiUrl={getEmojiUrl}
       />
   );
+}
+
+export function getEmojiUrl(unified: string, style: EmojiStyle) {
+  return `https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/${style}/64/${unified}.png`;
 }
 
 interface IconButtonProps extends ButtonProps, Pick<UseChatHelpers, 'setInput'> {
@@ -38,10 +42,9 @@ export function IconButton({
           className={cn(className)}
           {...props}
       >
-        <EmojiAvatar avatar={id} />
-        {/*<div className="user-avatar">*/}
-        {/*  {<EmojiAvatar avatar={id} />}*/}
-        {/*</div>*/}
+        <div className="user-avatar, ml-1">
+          {<EmojiAvatar avatar={id} />}
+        </div>
         {act}
       </Button>
   )
