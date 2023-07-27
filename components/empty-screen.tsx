@@ -49,15 +49,15 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
       <div className="mx-auto max-w-2xl px-4">
         <div className="rounded-lg border bg-background p-8">
           <h1 className="mb-2 text-lg font-semibold">
-            Welcome to AI Chatbot!
+            To be a prompt engineer!
           </h1>
           <p className="mb-2 leading-normal text-muted-foreground">
             This AI chatbot app with awesome prompts helps you be a better
-            prompt engineer.
+            prompt engineer. Select a role and we will generate the prompt for you:
           </p>
-          <p className="leading-normal text-muted-foreground">
-            Select a role and we will generate the best prompt for you:
-          </p>
+          {/*<p className="leading-normal text-muted-foreground">*/}
+          {/*  Select a role and we will generate the best prompt for you:*/}
+          {/*</p>*/}
           <div className="mt-4 flex space-y-2 justify-center" >
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
