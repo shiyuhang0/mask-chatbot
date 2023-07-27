@@ -9,7 +9,7 @@ import {type Chat, ChatRows} from '@/lib/types'
 
 const useKV = process.env.USE_KV === 'true'
 
-export async function GetPrompts(userId: number) {
+export async function GetPrompts(userId: string) {
   console.log('get prompts wih userId: ' + userId)
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts?userId=${userId}`,{ cache: 'no-cache' })
   if (!res.ok) {
