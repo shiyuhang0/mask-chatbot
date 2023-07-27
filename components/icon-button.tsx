@@ -12,14 +12,14 @@ export function EmojiAvatar(props: { avatar: string; size?: number }) {
       <Emoji
           unified={props.avatar}
           size={props.size ?? 18}
-          getEmojiUrl={getEmojiUrl}
+          // getEmojiUrl={getEmojiUrl}
       />
   );
 }
 
-export function getEmojiUrl(unified: string, style: EmojiStyle) {
-  return `https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/${style}/64/${unified}.png`;
-}
+// export function getEmojiUrl(unified: string, style: EmojiStyle) {
+//   return `https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/${style}/64/${unified}.png`;
+// }
 
 interface IconButtonProps extends ButtonProps, Pick<UseChatHelpers, 'setInput'> {
   act: string
