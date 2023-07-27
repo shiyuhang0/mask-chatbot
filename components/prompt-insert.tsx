@@ -17,7 +17,7 @@ import {AddPrompt} from "@/app/actions";
 import {useRouter} from "next/navigation";
 import {Textarea} from "@/components/ui/textarea";
 
-export function InsertPrompt() {
+export function InsertPrompt(id: number) {
   const [act, setAct] = useState('');
   const [prompt, setPrompt] = useState('');
   const router = useRouter()
@@ -53,7 +53,7 @@ export function InsertPrompt() {
           </div>
           <DialogFooter>
               <Button type="submit" onClick={async () => {
-                await AddPrompt(act, prompt)
+                await AddPrompt(act, prompt, id)
                 setOpen(false)
                 router.refresh()
                 router.push('/')

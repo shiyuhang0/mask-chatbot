@@ -52,8 +52,8 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
             To be a prompt engineer!
           </h1>
           <p className="mb-2 leading-normal text-muted-foreground">
-            This AI chatbot app with awesome prompts helps you be a better
-            prompt engineer. Select a role and we will generate the prompt for you:
+            This AI chatbot app helps you become a qualified prompt engineer.
+            Select a role to generate the most suitable prompt:
           </p>
           {/*<p className="leading-normal text-muted-foreground">*/}
           {/*  Select a role and we will generate the best prompt for you:*/}
