@@ -54,9 +54,9 @@ export async function Header() {
         </div>
       </div>
       <div className="flex items-center justify-end space-x-2">
-        {/*<a>*/}
-          <InsertPrompt userId={session.user.id}/>
-        {/*</a>*/}
+        <a>
+          <InsertPrompt userId={session?.user?.id}/>
+        </a>
         <a
           target="_blank"
           href="https://github.com/shiyuhang0/ai-chat/"
