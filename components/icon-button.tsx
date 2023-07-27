@@ -5,17 +5,28 @@ import {UseChatHelpers} from 'ai/react'
 
 import { cn } from '@/lib/utils'
 import { Button, type ButtonProps } from '@/components/ui/button'
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker, {Emoji} from 'emoji-picker-react';
 
+export function EmojiAvatar(props: { avatar: string; size?: number }) {
+  return (
+      <Emoji
+          unified={props.avatar}
+          size={props.size ?? 18}
+          // getEmojiUrl={getEmojiUrl}
+      />
+  );
+}
 
 interface IconButtonProps extends ButtonProps, Pick<UseChatHelpers, 'setInput'> {
   act: string
   prompt: string
+  id: string
 }
 
 export function IconButton({
                               act,
                               prompt,
+                              id,
                               className,
                               setInput,
                               ...props
@@ -27,7 +38,9 @@ export function IconButton({
           className={cn(className)}
           {...props}
       >
-        <EmojiPicker />
+        <div className="user-avatar">
+          {<EmojiAvatar avatar={id} />}
+        </div>
         {act}
       </Button>
   )

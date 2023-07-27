@@ -104,7 +104,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
           {/*<div className="mt-4 flex flex-col items-start space-y-2">*/}
           <div className="mt-4 grid grid-cols-3 gap-4">
             { ExamplePrompts.map((prompt,index) => (
-                < IconButton key={index} act={prompt.act} prompt={prompt.prompt} setInput={setInput} />
+                < IconButton key={index} id={'1f638'} act={prompt.act} prompt={prompt.prompt} setInput={setInput} />
             ))}
           </div>
         </div>
