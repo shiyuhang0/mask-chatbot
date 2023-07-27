@@ -36,7 +36,7 @@ The project can be deployed on Vercel.
 
 ## Deploy Your Own
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fshiyuhang0%2Fai-chat&env=OPENAI_API_KEY,AUTH_SECRET,AUTH_GITHUB_ID,AUTH_GITHUB_SECRET&envDescription=How%20to%20get%20these%20env%20vars&envLink=https%3A%2F%2Fgithub.com%2Fshiyuhang0%2Fai-chat%2Fblob%2Fmain%2F.env.example&integration-ids=oac_coKBVWCXNjJnCEth1zzKoF1j&skippable-integrations=1)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fshiyuhang0%2Fmask-chatbot&env=OPENAI_API_KEY,AUTH_SECRET,AUTH_GITHUB_ID,AUTH_GITHUB_SECRET&envDescription=How%20to%20get%20these%20env%20vars&envLink=https%3A%2F%2Fgithub.com%2Fshiyuhang0%2Fai-chat%2Fblob%2Fmain%2F.env.example&integration-ids=oac_coKBVWCXNjJnCEth1zzKoF1j&skippable-integrations=1)
 
 ### Environment Variables
 
