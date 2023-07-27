@@ -13,20 +13,18 @@ import {
   CommandItem
 } from "@/components/ui/command";
 import {cn} from "@/lib/utils";
+import {IconGitHub} from "@/components/ui/icons";
 
-const exampleMessages = [
-  {
-    heading: 'Explain technical concepts',
-    message: `What is a "serverless function"?`
-  },
-  {
-    heading: 'Summarize an article',
-    message: 'Summarize the following article for a 2nd grader: \n'
-  },
-  {
-    heading: 'Draft an email',
-    message: `Draft an email to my boss about the following: \n`
-  }
+const examplePrompts: Prompts[] = [
+  { act: "greeting", prompt: "Hello, how are you?" },
+  { act: "greeting", prompt: "Hi, how are you?" },
+  { act: "greeting", prompt: "Hey, how are you?" },
+  { act: "greeting", prompt: "Hi, how are you doing?" },
+  { act: "greeting", prompt: "Hello, how are you doing?" },
+  { act: "greeting", prompt: "Hey, how are you doing?" },
+  { act: "greeting", prompt: "Hi, how are you feeling?" },
+  { act: "greeting", prompt: "Hello, how are you feeling?" },
+  { act: "greeting", prompt: "Hey, how are you feeling?" },
 ]
 
 export interface PromptProps
@@ -111,6 +109,9 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                 </Command>
               </PopoverContent>
             </Popover>
+          </div>
+          <div className="mt-4 flex flex-col items-start space-y-2">
+            <IconGitHub/>
           </div>
         </div>
       </div>
