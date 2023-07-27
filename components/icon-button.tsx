@@ -8,8 +8,8 @@ import { Button, type ButtonProps } from '@/components/ui/button'
 import { IconGitHub, IconSpinner } from '@/components/ui/icons'
 
 interface IconButtonProps extends ButtonProps {
-  act: string
-  prompt: string
+  act?: string
+  prompt?: string
 }
 
 export function IconButton({
