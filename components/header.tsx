@@ -54,11 +54,7 @@ export async function Header() {
         </div>
       </div>
       <div className="flex items-center justify-end space-x-2">
-          if (session?.user ?) {
-          <a>
-          <InsertPrompt/>
-          </a>
-        }
+        {session?.user == null || <InsertPrompt />}
         <a
           target="_blank"
           href="https://github.com/shiyuhang0/ai-chat/"
