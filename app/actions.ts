@@ -9,7 +9,15 @@ import {type Chat, ChatRows} from '@/lib/types'
 
 const useKV = process.env.USE_KV === 'true'
 
-export async function GetPrompts(userId: string) {
+export async function GetPrompts() {
+  const session = await auth()
+
+  if (!session?.user?.id) {
+    return {
+      error: 'Unauthorized'
+    }
+  }
+  const userId = session.user.id
   console.log('get prompts wih userId: ' + userId)
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts?userId=${userId}`,{ cache: 'no-cache' })
   if (!res.ok) {
@@ -18,7 +26,15 @@ export async function GetPrompts(userId: string) {
   return res.json()
 }
 
-export async function AddPrompt(act: string,prompt: string,userId: string) {
+export async function AddPrompt(act: string,prompt: string) {
+  const session = await auth()
+
+  if (!session?.user?.id) {
+    return {
+      error: 'Unauthorized'
+    }
+  }
+  const userId = session.user.id
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`,{
     method: 'POST',
     body: JSON.stringify({act,prompt,userId}),

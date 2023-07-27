@@ -8,11 +8,7 @@ export const runtime = 'edge'
 
 export default async function IndexPage() {
   const id = nanoid()
-  const session = await auth()
-  if (!session?.user) {
-    redirect(`/`)
-  }
-  const prompts = JSON.stringify(await GetPrompts(session.user.id))
+  const prompts = JSON.stringify(await GetPrompts())
 
   return <Chat id={id} prompts={prompts}/>
 }
