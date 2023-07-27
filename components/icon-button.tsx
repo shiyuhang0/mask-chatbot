@@ -42,9 +42,9 @@ export function IconButton({
           className={cn(className)}
           {...props}
       >
-        <div className="user-avatar, ml-1">
-          {<EmojiAvatar avatar={id} />}
-        </div>
+        {/*<div className="ml-1">*/}
+        {/*  {<EmojiAvatar avatar={id} />}*/}
+        {/*</div>*/}
         {act}
       </Button>
   )
