@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit",
     "format:write": "prettier --write \"{app,lib,components}/**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"{app,lib,components}**/*.{ts,tsx,mdx}\" --cache",
-    "migrate": "npx prisma migrate deploy"
+    "vercel-build": "npx prisma migrate deploy && npm run build",
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
