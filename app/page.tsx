@@ -1,6 +1,8 @@
 import { nanoid } from '@/lib/utils'
 import { Chat } from '@/components/chat'
 import {GetPrompts} from "@/app/actions";
+import {auth} from "@/auth";
+import {redirect} from "next/navigation";
 
 export const runtime = 'edge'
 

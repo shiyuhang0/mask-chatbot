@@ -77,6 +77,9 @@ dependencies:
   digest-fetch:
     specifier: ^3.1.0
     version: 3.1.0
+  emoji-picker-react:
+    specifier: ^4.4.10
+    version: 4.4.10(react@18.2.0)
   focus-trap-react:
     specifier: ^10.1.1
     version: 10.1.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -2563,6 +2566,16 @@ packages:
   /electron-to-chromium@1.4.389:
     resolution: {integrity: sha512-WDgWUOK8ROR7sDFyYmxCUOoDc50lPgYAHAHwnnD1iN3SKO/mpqftb9iIPiEkMKmqYdkrR0j3N/O+YB/U7lSxwg==}
     dev: true
+
+  /emoji-picker-react@4.4.10(react@18.2.0):
+    resolution: {integrity: sha512-/5o57w8BKiCHklyqfYCeUlm00R9tdm2ZmJd0p6Q3/Ul7E7eMh+/FduuRFn3UVQCl5F6i4kOdREMz7EJ7YI1vMg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.2.0
+    dev: false
 
   /emoji-regex@10.2.1:
     resolution: {integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==}

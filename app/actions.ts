@@ -10,18 +10,34 @@ import {type Chat, ChatRows} from '@/lib/types'
 const useKV = process.env.USE_KV === 'true'
 
 export async function GetPrompts() {
-  console.log('get prompts')
-  const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`,{ cache: 'no-cache' })
+  const session = await auth()
+
+  if (!session?.user?.id) {
+    return {
+      error: 'Unauthorized'
+    }
+  }
+  const userId = session.user.id
+  console.log('get prompts wih userId: ' + userId)
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts?userId=${userId}`,{ cache: 'no-cache' })
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
   return res.json()
 }
 
-export async function AddPrompt(act: string,prompt:string) {
+export async function AddPrompt(act: string,prompt: string) {
+  const session = await auth()
+
+  if (!session?.user?.id) {
+    return {
+      error: 'Unauthorized'
+    }
+  }
+  const userId = session.user.id
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/prompts`,{
     method: 'POST',
-    body: JSON.stringify({act,prompt})
+    body: JSON.stringify({act,prompt,userId}),
   })
   if (!res.ok) {
     throw new Error('Failed to add data')

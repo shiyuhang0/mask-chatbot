@@ -15,7 +15,13 @@ export async function GET(request: Request) {
     }
   });
 
-  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` limit 300');
+  const { searchParams } = new URL(request.url)
+  let userId = searchParams.get('userId')
+  if (userId === null) {
+    userId = '0'
+  }
+
+  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` where userId=0 or userId=? limit 300', [userId]);
 
   return NextResponse.json({ rows })
 }
@@ -41,8 +47,12 @@ export async function POST(request: Request) {
 
   const act = payload.act
   const prompt = payload.prompt
+  let userId = payload.userId
+  if (userId === null || userId === undefined) {
+     userId = -1
+  }
 
-  await connection.execute('INSERT INTO `prompts` (act,prompt) values (?,?)',[act,prompt]);
+  await connection.execute('INSERT INTO `prompts` (act,prompt,userId) values (?,?,?)',[act,prompt,userId]);
 
   return NextResponse.json({ success: true })
 }
