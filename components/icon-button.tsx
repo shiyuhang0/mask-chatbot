@@ -5,7 +5,8 @@ import {UseChatHelpers} from 'ai/react'
 
 import { cn } from '@/lib/utils'
 import { Button, type ButtonProps } from '@/components/ui/button'
-import { IconGitHub, IconSpinner } from '@/components/ui/icons'
+import EmojiPicker from 'emoji-picker-react';
+
 
 interface IconButtonProps extends ButtonProps, Pick<UseChatHelpers, 'setInput'> {
   act: string
@@ -26,7 +27,7 @@ export function IconButton({
           className={cn(className)}
           {...props}
       >
-        <IconGitHub className="mr-2" />
+        <EmojiPicker className="mr-2" />
         {act}
       </Button>
   )

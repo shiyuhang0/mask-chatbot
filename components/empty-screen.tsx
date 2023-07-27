@@ -16,12 +16,12 @@ import {cn} from "@/lib/utils";
 import {IconButton} from "@/components/icon-button";
 
 const ExamplePrompts: Prompts[] = [
-  { act: "github1", prompt: "Hello, how are you?" },
-  { act: "github2", prompt: "Hi, how are you?" },
-  { act: "github3", prompt: "Hey, how are you?" },
-  { act: "github4", prompt: "Hi, how are you doing?" },
-  { act: "github5", prompt: "Hello, how are you doing?" },
-  { act: "github6", prompt: "Hey, how are you doing?" }
+  { act: "Linux Terminal", prompt: "I want you to act as a linux terminal. I will type commands and you will reply with what the terminal should show. I want you to only reply with the terminal output inside one unique code block, and nothing else. do not write explanations. do not type commands unless I instruct you to do so. when i need to tell you something in english, i will do so by putting text inside curly brackets {like this}. my first command is pwd" },
+  { act: "Travel Guide", prompt: "I want you to act as a travel guide. I will write you my location and you will suggest a place to visit near my location. In some cases, I will also give you the type of places I will visit. You will also suggest me places of similar type that are close to my first location. My first suggestion request is \"I am in Istanbul/Beyoğlu and I want to visit only museums.\"" },
+  { act: "Movie Critic", prompt: "I want you to act as a movie critic. You will develop an engaging and creative movie review. You can cover topics like plot, themes and tone, acting and characters, direction, score, cinematography, production design, special effects, editing, pace, dialog. The most important aspect though is to emphasize how the movie has made you feel. What has really resonated with you. You can also be critical about the movie. Please avoid spoilers. My first request is \"I need to write a movie review for the movie Interstellar\"" },
+  { act: "Career Counselor", prompt: "I want you to act as a career counselor. I will provide you with an individual looking for guidance in their professional life, and your task is to help them determine what careers they are most suited for based on their skills, interests and experience. You should also conduct research into the various options available, explain the job market trends in different industries and advice on which qualifications would be beneficial for pursuing particular fields. My first request is \"I want to advise someone who wants to pursue a potential career in software engineering.\"" },
+  { act: "Investment Manager", prompt: "Seeking guidance from experienced staff with expertise on financial markets , incorporating factors such as inflation rate or return estimates along with tracking stock prices over lengthy period ultimately helping customer understand sector then suggesting safest possible options available where he/she can allocate funds depending upon their requirement & interests ! Starting query - “What currently is best way to invest money short term prospective?”" },
+  { act: "Essay Writer", prompt: "I want you to act as an essay writer. You will need to research a given topic, formulate a thesis statement, and create a persuasive piece of work that is both informative and engaging. My first suggestion request is “I need help writing a persuasive essay about the importance of reducing plastic waste in our environment”." }
 ]
 
 export interface EmptyScreenProps extends Pick<UseChatHelpers, 'setInput'> {
