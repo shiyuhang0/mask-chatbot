@@ -52,11 +52,11 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
             Welcome to AI Chatbot!
           </h1>
           <p className="mb-2 leading-normal text-muted-foreground">
-            This is an open source AI chatbot app with awesome prompts, helping you be a better
+            This AI chatbot app with awesome prompts helps you be a better
             prompt engineer.
           </p>
           <p className="leading-normal text-muted-foreground">
-            You can select a role and we will generate the best prompt for you:
+            Select a role and we will generate the best prompt for you:
           </p>
           <div className="mt-4 flex space-y-2 justify-center" >
             <Popover open={open} onOpenChange={setOpen}>
@@ -65,7 +65,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="justify-between"
+                    className="w-fit justify-between"
                 >
                   {value
                       ? value
@@ -104,8 +104,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
               </PopoverContent>
             </Popover>
           </div>
-          {/*<div className="mt-4 flex flex-col items-start space-y-2">*/}
-          <div className="mt-4 grid grid-cols-4 gap-4">
+          <div className="mt-4 grid grid-cols-3 gap-4">
             { ExamplePrompts.map((prompt,index) => (
                 < IconButton key={index} id={'1f638'} act={prompt.act} prompt={prompt.prompt} setInput={setInput} />
             ))}
