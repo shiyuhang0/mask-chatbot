@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model chats {
+  id        String  @id @db.VarChar(255)
+  title     String? @db.VarChar(255)
+  createdAt BigInt?
+  userId    BigInt?
+  path      String? @db.VarChar(255)
+  sharePath String? @db.VarChar(255)
+  messages  Json?
+}
+
+model prompts {
+  id     Int     @id @default(autoincrement())
+  act    String? @db.VarChar(512)
+  prompt String? @db.Text
+  userId BigInt  @default(0)
+}
