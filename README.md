@@ -52,7 +52,6 @@ If you skip the Vercel TiDB integration, you need add the following environment 
 - TIDB_HOST: The host of your TiDB Serverless
 - TIDB_USER: The user of your TiDB Serverless
 - TIDB_PASSWORD: The password of your TiDB Serverless
-- DATABASE_URL: Database URL used by Prisma
 
 
 
