@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: 'Next.js AI Chatbot',
     template: `%s - Next.js AI Chatbot`
   },
-  description: 'An AI-powered chatbot template built with Next.js and Vercel.',
+  description: 'An AI-powered mask chatbot template built with Next.js and Vercel.',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' }
