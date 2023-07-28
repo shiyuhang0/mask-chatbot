@@ -12,9 +12,9 @@
     "type-check": "tsc --noEmit",
     "format:write": "prettier --write \"{app,lib,components}/**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"{app,lib,components}**/*.{ts,tsx,mdx}\" --cache",
-    "prisma:migrate": "DATABASE_URL=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test2?sslaccept=strict\" npx prisma migrate deploy",
-    "prisma:generate": "DATABASE_URL=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test2?sslaccept=strict\" npx prisma generate",
-    "prisma:seed": "DATABASE_URL=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test2?sslaccept=strict\" npx prisma db seed",
+    "prisma:migrate": "DATABASE_URL=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test?sslaccept=strict\" npx prisma migrate deploy",
+    "prisma:generate": "DATABASE_URL=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test?sslaccept=strict\" npx prisma generate",
+    "prisma:seed": "DATABASE_URL=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test?sslaccept=strict\" npx prisma db seed",
     "vercel-build":  "npm run prisma:migrate && npm run prisma:generate && npm run prisma:seed && npm run build"
   },
   "prisma": {
