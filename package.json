@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit",
     "format:write": "prettier --write \"{app,lib,components}/**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"{app,lib,components}**/*.{ts,tsx,mdx}\" --cache",
-    "vercel-build": "DATABASE_URL=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test2?sslaccept=strict\" npx prisma migrate deploy && npx prisma generate && npx prisma db seed && npm run build"
+    "vercel-build": "DATABASE_URL2=\"mysql://${TIDB_USER}:${TIDB_PASSWORD}@${TIDB_HOST}:4000/test2?sslaccept=strict\" npx prisma migrate deploy && npx prisma generate && npx prisma db seed && npm run build"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
