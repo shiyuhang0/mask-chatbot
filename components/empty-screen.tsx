@@ -52,7 +52,7 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
             Mask AI Chatbot!
           </h1>
           <p className="mb-2 leading-normal text-muted-foreground">
-            The Mask AI chatbot helps you generate the most suitable prompt, makes you a junior prompt engineer.
+            This Mask AI chatbot helps you generate the most suitable prompt, makes you a junior prompt engineer.
           </p>
           {/*<p className="leading-normal text-muted-foreground">*/}
           {/*  Select a role and we will generate the best prompt for you:*/}
