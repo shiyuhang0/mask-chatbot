@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import quotes from "./prompts.json"
 const prisma = new PrismaClient();
+import fs from 'fs';
+import csvParser from 'csv-parser';
 
 export async function main() {
   const p = await prisma.prompts.findFirst()
@@ -8,16 +9,31 @@ export async function main() {
     console.log("Already seeded 🌱")
     return
   }
-  console.log("[Start seed] 🎸")
-  for (let quote of quotes) {
-    await prisma.prompts.create({
-      data: {
-        act: quote.act,
-        prompt: quote.prompt
-      }
-    })
-  }
+  const datas = await parseCSV("./prisma/prompts.csv")
+  console.log("[Start seed "+datas.length+ " datas] 🎸")
+  await prisma.prompts.createMany({data: datas})
   console.log("Done 🎉")
+}
+
+type CSVData = {
+  act: string;
+  prompt: string;
+};
+
+function parseCSV(filePath: string): Promise<CSVData[]> {
+  return new Promise((resolve, reject) => {
+    const results: CSVData[] = [];
+
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data', (data: any) => results.push(data))
+      .on('end', () => {
+        resolve(results);
+      })
+      .on('error', (error: any) => {
+        reject(error);
+      });
+  });
 }
 
 main()

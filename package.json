@@ -42,6 +42,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
+    "csv-parser": "^3.0.0",
     "digest-fetch": "^3.1.0",
     "emoji-picker-react": "^4.4.10",
     "focus-trap-react": "^10.1.1",
