@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     userId = '0'
   }
 
-  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` where userId=0 or userId=? limit 300', [userId]);
+  const [rows, fields] = await connection.execute('SELECT act,prompt FROM `prompts` where userId=0 or userId=? order by id desc limit 300', [userId]);
 
   return NextResponse.json({ rows })
 }
