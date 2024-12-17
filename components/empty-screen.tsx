@@ -49,10 +49,10 @@ export function EmptyScreen({setInput, prompts}: EmptyScreenProps) {
       <div className="mx-auto max-w-2xl px-4">
         <div className="rounded-lg border bg-background p-8">
           <h1 className="mb-2 text-lg font-semibold">
-            Mask AI Chatbot!
+            多角色聊天机器人!
           </h1>
           <p className="mb-2 leading-normal text-muted-foreground">
-            This Mask AI chatbot helps you generate the most suitable prompt, makes you a junior prompt engineer.
+            该多角色聊天机器人为你使用最佳的提示词，帮助你成为一个初级的提示词工程师。
           </p>
           {/*<p className="leading-normal text-muted-foreground">*/}
           {/*  Select a role and we will generate the best prompt for you:*/}

@@ -26,14 +26,14 @@ export function InsertPrompt() {
   return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">Add Prompt</Button>
+          <Button variant="outline">添加角色</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Add Prompt</DialogTitle>
+            <DialogTitle>添加角色</DialogTitle>
             <DialogDescription>
               <p className="leading-normal text-muted-foreground">
-                Customize your prompt and click save to store them.
+                自定义角色与提示词并点击 save 保存.
               </p>
             </DialogDescription>
           </DialogHeader>
