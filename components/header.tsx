@@ -55,13 +55,6 @@ export async function Header() {
       </div>
       <div className="flex items-center justify-end space-x-2">
         {session?.user == null || <InsertPrompt />}
-        <a
-          target="_blank"
-          href="https://github.com/shiyuhang0/ai-chat/"
-          rel="noopener noreferrer"
-          className={cn(buttonVariants({ variant: 'outline' }))}
-        >
-        </a>
       </div>
     </header>
   )
